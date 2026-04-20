@@ -33,17 +33,17 @@ export function LPPanel() {
             </Button>
           </div>
 
-          <div className="glass-strong rounded-3xl p-7 neon-border">
-            <div className="grid grid-cols-3 gap-4">
+          <div className="glass-strong rounded-3xl p-5 sm:p-7 neon-border overflow-hidden">
+            <div className="grid grid-cols-3 gap-2 sm:gap-4">
               <Metric icon={TrendingUp} label="APY" value={`${apy}%`} tone="cyan" />
               <Metric icon={Timer} label="Avg lock" value={`${avgLock}d`} tone="violet" />
               <Metric icon={Gauge} label="Est. return" value={`${expReturn} SOL`} tone="blue" />
             </div>
 
             <div className="mt-6">
-              <div className="flex justify-between text-xs mb-2">
-                <span className="text-muted-foreground">Risk Level</span>
-                <span className="text-[var(--neon-cyan)]">Low–Medium</span>
+              <div className="flex justify-between text-xs mb-2 gap-2">
+                <span className="text-muted-foreground truncate">Risk Level</span>
+                <span className="text-[var(--neon-cyan)] shrink-0">Low–Medium</span>
               </div>
               <div className="relative h-2 rounded-full bg-white/5 overflow-hidden">
                 <div
@@ -75,10 +75,10 @@ export function LPPanel() {
 function Metric({ icon: Icon, label, value, tone }: { icon: typeof TrendingUp; label: string; value: string; tone: "cyan" | "violet" | "blue" }) {
   const color = tone === "cyan" ? "var(--neon-cyan)" : tone === "violet" ? "var(--neon-violet)" : "var(--neon-blue)";
   return (
-    <div className="rounded-2xl bg-white/5 p-4">
+    <div className="rounded-2xl bg-white/5 p-3 sm:p-4 min-w-0">
       <Icon className="h-4 w-4 text-muted-foreground" />
-      <div className="mt-3 text-xs text-muted-foreground">{label}</div>
-      <div className="mt-1 text-xl font-semibold tabular-nums" style={{ color }}>{value}</div>
+      <div className="mt-2 sm:mt-3 text-[10px] sm:text-xs text-muted-foreground truncate">{label}</div>
+      <div className="mt-1 text-base sm:text-xl font-semibold tabular-nums truncate" style={{ color }}>{value}</div>
     </div>
   );
 }

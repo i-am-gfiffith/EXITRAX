@@ -11,7 +11,7 @@ export function Hero() {
               <span className="h-2 w-2 rounded-full bg-[var(--neon-cyan)] animate-pulse" />
               Live on Solana · v1.0
             </div>
-            <h1 className="mt-5 text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.05]">
+            <h1 className="mt-5 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.05]">
               Unstake Instantly. <br />
               <span className="text-gradient">No Waiting.</span>
             </h1>
@@ -40,9 +40,9 @@ export function Hero() {
                 { k: "<2s", v: "Exit time" },
                 { k: "12.4%", v: "LP APY" },
               ].map((s) => (
-                <div key={s.v} className="glass rounded-xl px-3 py-3">
-                  <div className="text-lg font-semibold">{s.k}</div>
-                  <div className="text-xs text-muted-foreground">{s.v}</div>
+                <div key={s.v} className="glass rounded-xl px-2 py-3 sm:px-3">
+                  <div className="text-base sm:text-lg font-semibold">{s.k}</div>
+                  <div className="text-[10px] sm:text-xs text-muted-foreground">{s.v}</div>
                 </div>
               ))}
             </div>

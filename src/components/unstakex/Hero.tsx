@@ -74,7 +74,7 @@ export function Hero() {
               </Button>
             </div>
 
-            <div className="glass absolute -bottom-6 -left-6 hidden md:block rounded-2xl p-4 w-56 animate-float" style={{ animationDelay: "1.5s" }}>
+            <div className="glass absolute -bottom-6 -left-2 sm:-left-6 hidden sm:block rounded-2xl p-4 w-52 sm:w-56 animate-float" style={{ animationDelay: "1.5s" }}>
               <div className="text-xs text-muted-foreground">LP Profit (est.)</div>
               <div className="mt-1 text-2xl font-semibold text-[var(--neon-cyan)]">+0.90 SOL</div>
               <div className="mt-1 text-[10px] text-muted-foreground">on 14d position</div>

@@ -33,29 +33,29 @@ export function Dashboard() {
 
         <div className="mt-12 grid gap-6 lg:grid-cols-[1.1fr_1fr]">
           {/* Main exit card */}
-          <div className="glass-strong neon-border rounded-3xl p-7">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="h-9 w-9 grid place-items-center rounded-xl bg-white/5">
+          <div className="glass-strong neon-border rounded-3xl p-5 sm:p-7 overflow-hidden">
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2 min-w-0">
+                <div className="h-9 w-9 shrink-0 grid place-items-center rounded-xl bg-white/5">
                   <Wallet className="h-4 w-4 text-[var(--neon-cyan)]" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <div className="text-xs text-muted-foreground">Wallet</div>
-                  <div className="text-sm font-mono">{connected ? "7xKp…q3vN" : "Not connected"}</div>
+                  <div className="text-sm font-mono truncate">{connected ? "7xKp…q3vN" : "Not connected"}</div>
                 </div>
               </div>
               <Button
                 size="sm"
                 onClick={() => setConnected((c) => !c)}
-                className="rounded-lg text-primary-foreground"
+                className="rounded-lg text-primary-foreground shrink-0 px-3"
                 style={{ background: connected ? "rgba(255,255,255,0.08)" : "linear-gradient(135deg, var(--neon-violet), var(--neon-blue))" }}
                 variant={connected ? "secondary" : "default"}
               >
-                {connected ? "Disconnect" : "Connect Phantom"}
+                {connected ? "Disconnect" : "Connect"}
               </Button>
             </div>
 
-            <div className="mt-7 grid grid-cols-2 gap-4">
+            <div className="mt-7 grid grid-cols-2 gap-3 sm:gap-4">
               <Stat label="Locked Balance" value={`${locked.toFixed(2)} SOL`} icon={Wallet} />
               <Stat label="Time to Unlock" value={`${days} day${days > 1 ? "s" : ""}`} icon={Clock} />
             </div>
@@ -75,24 +75,26 @@ export function Dashboard() {
               />
             </div>
 
-            <div className="mt-7 grid grid-cols-2 gap-4">
+            <div className="mt-7 grid grid-cols-2 gap-3 sm:gap-4">
               <BigStat label="Discount" value={`${dAnim.toFixed(2)}%`} tone="violet" />
-              <BigStat label="Instant Exit Value" value={`${vAnim.toFixed(3)} SOL`} tone="cyan" />
+              <BigStat label="Instant Exit" value={`${vAnim.toFixed(3)} SOL`} tone="cyan" />
             </div>
 
-            <div className="mt-5 flex items-center justify-between rounded-xl bg-white/5 px-4 py-3">
-              <span className="text-sm text-muted-foreground flex items-center gap-2">
-                <Sparkles className="h-4 w-4 text-[var(--neon-cyan)]" /> You save
+            <div className="mt-5 flex items-center justify-between gap-2 rounded-xl bg-white/5 px-4 py-3">
+              <span className="text-sm text-muted-foreground flex items-center gap-2 min-w-0">
+                <Sparkles className="h-4 w-4 shrink-0 text-[var(--neon-cyan)]" />
+                <span className="truncate">You save</span>
               </span>
-              <span className="text-sm font-medium">{days} days of waiting</span>
+              <span className="text-sm font-medium shrink-0">{days} days</span>
             </div>
 
             <Button
               size="lg"
-              className="mt-6 w-full rounded-xl text-primary-foreground text-base font-semibold animate-pulse-glow"
+              className="mt-6 w-full rounded-xl text-primary-foreground text-sm sm:text-base font-semibold animate-pulse-glow whitespace-normal h-auto py-3"
               style={{ background: "linear-gradient(135deg, var(--neon-cyan), var(--neon-violet))" }}
             >
-              <Zap className="mr-2 h-4 w-4" /> Instant Exit · Receive {vAnim.toFixed(3)} SOL
+              <Zap className="mr-2 h-4 w-4 shrink-0" />
+              <span className="truncate">Instant Exit · {vAnim.toFixed(3)} SOL</span>
             </Button>
           </div>
 
@@ -145,11 +147,11 @@ export function Dashboard() {
 
 function Stat({ label, value, icon: Icon }: { label: string; value: string; icon: typeof Wallet }) {
   return (
-    <div className="rounded-xl bg-white/5 p-4">
+    <div className="rounded-xl bg-white/5 p-3 sm:p-4 min-w-0">
       <div className="flex items-center gap-2 text-xs text-muted-foreground">
-        <Icon className="h-3.5 w-3.5" /> {label}
+        <Icon className="h-3.5 w-3.5 shrink-0" /> <span className="truncate">{label}</span>
       </div>
-      <div className="mt-2 text-xl font-semibold">{value}</div>
+      <div className="mt-2 text-lg sm:text-xl font-semibold truncate">{value}</div>
     </div>
   );
 }
@@ -157,9 +159,9 @@ function Stat({ label, value, icon: Icon }: { label: string; value: string; icon
 function BigStat({ label, value, tone }: { label: string; value: string; tone: "cyan" | "violet" }) {
   const color = tone === "cyan" ? "var(--neon-cyan)" : "var(--neon-violet)";
   return (
-    <div className="rounded-xl p-4 neon-border bg-white/5">
-      <div className="text-xs text-muted-foreground">{label}</div>
-      <div className="mt-1 text-2xl font-semibold tabular-nums" style={{ color }}>{value}</div>
+    <div className="rounded-xl p-3 sm:p-4 neon-border bg-white/5 min-w-0">
+      <div className="text-xs text-muted-foreground truncate">{label}</div>
+      <div className="mt-1 text-lg sm:text-2xl font-semibold tabular-nums truncate" style={{ color }}>{value}</div>
     </div>
   );
 }

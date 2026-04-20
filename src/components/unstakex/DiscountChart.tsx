@@ -43,7 +43,7 @@ export function DiscountChart({ day }: { day: number }) {
               fontSize: 12,
             }}
             labelFormatter={(l) => `Day ${l}`}
-            formatter={(v: number) => [`${v}%`, "Discount"]}
+            formatter={((v: any) => [`${v}%`, "Discount"]) as any}
           />
           <Area
             type="monotone"

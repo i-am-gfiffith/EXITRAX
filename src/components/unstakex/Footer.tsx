@@ -1,8 +1,9 @@
-import { Twitter, Github, Mail } from "lucide-react";
+import { Twitter, Github, Mail, Instagram } from "lucide-react";
 
 const socials = [
   { name: "X (Twitter)", icon: Twitter, href: "https://x.com/i_am_guts___" },
   { name: "GitHub", icon: Github, href: "https://github.com/i-am-gfiffith" },
+  { name: "Instagram", icon: Instagram, href: "https://instagram.com/the_irretrivable_homosepian" },
   { name: "Email", icon: Mail, href: "mailto:anmolmishra2306@gmail.com" },
 ];
 

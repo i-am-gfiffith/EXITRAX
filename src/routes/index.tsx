@@ -7,6 +7,7 @@ import { HowItWorks } from "@/components/unstakex/HowItWorks";
 import { Dashboard } from "@/components/unstakex/Dashboard";
 import { LPPanel } from "@/components/unstakex/LPPanel";
 import { Footer } from "@/components/unstakex/Footer";
+import { CursorGlow } from "@/components/unstakex/CursorGlow";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -24,6 +25,7 @@ function Index() {
   return (
     <div className="relative min-h-screen">
       <AnimatedBackground />
+      <CursorGlow />
       <Nav />
       <main>
         <Hero />

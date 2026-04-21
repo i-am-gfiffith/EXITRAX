@@ -40,6 +40,7 @@
   --color-warning: var(--warning);
 
   --font-sans: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
   --animate-pulse-glow: pulse-glow 2.4s ease-in-out infinite;

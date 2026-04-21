@@ -40,6 +40,7 @@
   --color-warning: var(--warning);
 
   --font-sans: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
   --animate-pulse-glow: pulse-glow 2.4s ease-in-out infinite;
@@ -206,5 +207,28 @@
       linear-gradient(90deg, color-mix(in oklab, var(--neon-cyan) 8%, transparent) 1px, transparent 1px);
     background-size: 48px 48px;
     mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  }
+
+  .font-serif { font-family: var(--font-serif); font-feature-settings: "liga", "dlig"; }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-size: 0.6875rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: color-mix(in oklab, var(--foreground) 65%, transparent);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 1.75rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--neon-cyan));
+  }
+
+  .hairline {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--neon-cyan) 40%, transparent), transparent);
   }
 }

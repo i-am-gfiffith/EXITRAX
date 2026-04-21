@@ -5,13 +5,11 @@ export function Nav() {
     <header className="sticky top-0 z-40 w-full">
       <div className="mx-auto mt-4 max-w-7xl px-3 sm:px-4">
         <div className="glass flex items-center justify-between gap-2 rounded-2xl px-3 py-2.5 sm:px-5 sm:py-3">
-          <a href="#top" className="flex items-center gap-2 min-w-0">
-            <div className="relative h-8 w-8 shrink-0 rounded-lg" style={{ background: "linear-gradient(135deg, var(--neon-cyan), var(--neon-violet))" }}>
-              <div className="absolute inset-0.5 rounded-[7px] bg-background/70 grid place-items-center">
-                <span className="text-xs font-bold text-gradient">UX</span>
-              </div>
+          <a href="#top" className="flex items-center gap-2.5 min-w-0">
+            <div className="relative h-7 w-7 shrink-0 rounded-full" style={{ background: "linear-gradient(135deg, var(--neon-cyan), var(--neon-violet))" }}>
+              <div className="absolute inset-[2px] rounded-full bg-background/80" />
             </div>
-            <span className="font-semibold tracking-tight truncate">UnstakeX</span>
+            <span className="font-serif text-lg tracking-tight truncate">UnstakeX</span>
           </a>
           <nav className="hidden md:flex items-center gap-7 text-sm text-muted-foreground">
             <a href="#how" className="hover:text-foreground transition">How it works</a>
@@ -20,10 +18,10 @@ export function Nav() {
           </nav>
           <Button
             size="sm"
-            className="rounded-xl font-medium text-primary-foreground shrink-0 px-3 sm:px-4"
+            className="rounded-full font-medium text-primary-foreground shrink-0 px-4"
             style={{ background: "linear-gradient(135deg, var(--neon-cyan), var(--neon-blue))" }}
           >
-            Launch App
+            Launch
           </Button>
         </div>
       </div>

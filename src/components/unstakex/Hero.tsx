@@ -3,26 +3,27 @@ import { ArrowRight, Zap } from "lucide-react";
 
 export function Hero() {
   return (
-    <section id="top" className="relative pt-20 pb-24">
+    <section id="top" className="relative pt-24 pb-28">
       <div className="mx-auto max-w-7xl px-4">
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+        <div className="grid gap-16 lg:grid-cols-[1.1fr_1fr] lg:items-center">
           <div className="animate-fade-up">
-            <div className="glass inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs text-muted-foreground">
-              <span className="h-2 w-2 rounded-full bg-[var(--neon-cyan)] animate-pulse" />
-              Live on Solana · v1.0
-            </div>
-            <h1 className="mt-5 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.05]">
-              Unstake Instantly. <br />
-              <span className="text-gradient">No Waiting.</span>
+            <div className="eyebrow">Live on Solana — v1.0</div>
+
+            <h1 className="mt-6 text-5xl sm:text-6xl md:text-7xl font-medium tracking-tight leading-[1.02]">
+              Unstake <span className="font-serif italic font-normal">instantly.</span>
+              <br />
+              <span className="text-gradient">No waiting.</span>
             </h1>
-            <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-              Turn locked staking and restaking positions into liquid SOL in seconds.
-              UnstakeX is the liquidity layer that ends the unstaking queue.
+
+            <p className="mt-7 max-w-lg text-lg text-muted-foreground leading-relaxed">
+              The liquidity layer for Solana stakers. Convert locked positions into liquid SOL in
+              <span className="font-serif italic text-foreground"> seconds</span>, not days.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+
+            <div className="mt-9 flex flex-wrap items-center gap-4">
               <Button
                 size="lg"
-                className="rounded-xl px-6 text-primary-foreground glow-cyan hover-lift"
+                className="rounded-full px-6 text-primary-foreground glow-cyan hover-lift"
                 style={{ background: "linear-gradient(135deg, var(--neon-cyan), var(--neon-blue))" }}
                 asChild
               >
@@ -30,50 +31,70 @@ export function Hero() {
                   <Zap className="mr-1 h-4 w-4" /> Launch App
                 </a>
               </Button>
-              <Button size="lg" variant="outline" className="rounded-xl border-white/15 bg-white/5 hover:bg-white/10" asChild>
-                <a href="#how">View Demo <ArrowRight className="ml-1 h-4 w-4" /></a>
-              </Button>
+              <a href="#how" className="group inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition">
+                View demo
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </a>
             </div>
-            <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm">
+
+            <div className="mt-14 flex items-center gap-8">
               {[
-                { k: "$42M+", v: "Liquidity" },
+                { k: "$42M", v: "Liquidity" },
                 { k: "<2s", v: "Exit time" },
                 { k: "12.4%", v: "LP APY" },
-              ].map((s) => (
-                <div key={s.v} className="flex items-baseline gap-2">
-                  <span className="font-semibold tabular-nums">{s.k}</span>
-                  <span className="text-xs text-muted-foreground">{s.v}</span>
+              ].map((s, i) => (
+                <div key={s.v} className="flex items-center gap-8">
+                  {i > 0 && <div className="h-8 w-px bg-white/10" />}
+                  <div>
+                    <div className="font-serif text-2xl tabular-nums">{s.k}</div>
+                    <div className="mt-0.5 text-[10px] uppercase tracking-widest text-muted-foreground">{s.v}</div>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
 
           <div className="relative animate-fade-up" style={{ animationDelay: "0.15s" }}>
-            <div className="glass-strong neon-border rounded-3xl p-6 animate-float">
-              <div className="flex items-center justify-between">
-                <span className="text-xs uppercase tracking-widest text-muted-foreground">Locked Position</span>
-                <span className="text-xs text-[var(--neon-cyan)]">● Live</span>
-              </div>
-              <div className="mt-4 flex items-baseline gap-2">
-                <span className="text-5xl font-semibold tracking-tight">10.00</span>
-                <span className="text-muted-foreground">SOL</span>
-              </div>
-              <div className="mt-1 text-xs text-muted-foreground">Unlocks in 14 days</div>
+            <div className="relative rounded-[2rem] p-8 overflow-hidden" style={{
+              background: "linear-gradient(160deg, color-mix(in oklab, white 8%, transparent), color-mix(in oklab, var(--neon-violet) 8%, transparent))",
+              backdropFilter: "blur(28px)",
+              border: "1px solid color-mix(in oklab, white 12%, transparent)",
+            }}>
+              <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full blur-3xl opacity-40"
+                style={{ background: "radial-gradient(circle, var(--neon-violet), transparent 70%)" }} />
 
-              <div className="mt-6 space-y-3">
-                <Row label="Discount" value="9.00%" />
-                <Row label="Instant Exit" value="9.10 SOL" highlight />
-                <Row label="You save" value="14 days" />
-              </div>
+              <div className="relative">
+                <div className="flex items-center justify-between">
+                  <span className="eyebrow">Locked Position</span>
+                  <span className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-[var(--neon-cyan)]">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[var(--neon-cyan)] animate-pulse" /> Live
+                  </span>
+                </div>
 
-              <Button
-                className="mt-6 w-full rounded-xl text-primary-foreground animate-pulse-glow"
-                style={{ background: "linear-gradient(135deg, var(--neon-cyan), var(--neon-violet))" }}
-              >
-                Instant Exit
-              </Button>
+                <div className="mt-8">
+                  <div className="flex items-baseline gap-3">
+                    <span className="font-serif text-7xl tracking-tight tabular-nums">10.00</span>
+                    <span className="text-muted-foreground">SOL</span>
+                  </div>
+                  <div className="mt-2 text-xs text-muted-foreground">Unlocks in 14 days</div>
+                </div>
+
+                <div className="mt-8 hairline" />
+
+                <div className="mt-6 space-y-4">
+                  <Row label="Discount" value="9.00%" />
+                  <Row label="Instant exit" value="9.10 SOL" highlight />
+                  <Row label="You save" value="14 days" />
+                </div>
+
+                <Button
+                  className="mt-8 w-full rounded-full text-primary-foreground"
+                  style={{ background: "linear-gradient(135deg, var(--neon-cyan), var(--neon-violet))" }}
+                >
+                  Instant Exit
+                </Button>
+              </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -83,9 +104,9 @@ export function Hero() {
 
 function Row({ label, value, highlight }: { label: string; value: string; highlight?: boolean }) {
   return (
-    <div className="flex items-center justify-between rounded-xl bg-white/5 px-4 py-3">
+    <div className="flex items-center justify-between">
       <span className="text-sm text-muted-foreground">{label}</span>
-      <span className={`text-sm font-medium ${highlight ? "text-[var(--neon-cyan)]" : ""}`}>{value}</span>
+      <span className={`text-sm font-medium tabular-nums ${highlight ? "text-[var(--neon-cyan)]" : ""}`}>{value}</span>
     </div>
   );
 }

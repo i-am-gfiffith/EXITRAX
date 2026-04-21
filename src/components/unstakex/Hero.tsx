@@ -34,15 +34,15 @@ export function Hero() {
                 <a href="#how">View Demo <ArrowRight className="ml-1 h-4 w-4" /></a>
               </Button>
             </div>
-            <div className="mt-10 grid grid-cols-3 gap-4 max-w-md">
+            <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm">
               {[
                 { k: "$42M+", v: "Liquidity" },
                 { k: "<2s", v: "Exit time" },
                 { k: "12.4%", v: "LP APY" },
               ].map((s) => (
-                <div key={s.v} className="glass rounded-xl px-2 py-3 sm:px-3">
-                  <div className="text-base sm:text-lg font-semibold">{s.k}</div>
-                  <div className="text-[10px] sm:text-xs text-muted-foreground">{s.v}</div>
+                <div key={s.v} className="flex items-baseline gap-2">
+                  <span className="font-semibold tabular-nums">{s.k}</span>
+                  <span className="text-xs text-muted-foreground">{s.v}</span>
                 </div>
               ))}
             </div>
@@ -74,11 +74,6 @@ export function Hero() {
               </Button>
             </div>
 
-            <div className="glass absolute -bottom-6 -left-2 sm:-left-6 hidden sm:block rounded-2xl p-4 w-52 sm:w-56 animate-float" style={{ animationDelay: "1.5s" }}>
-              <div className="text-xs text-muted-foreground">LP Profit (est.)</div>
-              <div className="mt-1 text-2xl font-semibold text-[var(--neon-cyan)]">+0.90 SOL</div>
-              <div className="mt-1 text-[10px] text-muted-foreground">on 14d position</div>
-            </div>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-// uns8x pricing engine
+// UNS8X pricing engine
 // D = k * t + r  (capped 0..100)
 // V_exit = V_locked * (1 - D/100)
 export const K = 0.5;

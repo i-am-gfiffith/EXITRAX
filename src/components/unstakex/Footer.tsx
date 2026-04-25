@@ -1,4 +1,5 @@
 import { Twitter, Github, Mail, Instagram } from "lucide-react";
+import { BrandName } from "./BrandName";
 
 const socials = [
   { name: "X (Twitter)", icon: Twitter, href: "https://x.com/i_am_guts___" },
@@ -18,7 +19,7 @@ export function Footer() {
                 className="h-7 w-7 rounded-lg"
                 style={{ background: "linear-gradient(135deg, var(--neon-cyan), var(--neon-violet))" }}
               />
-              <span className="font-semibold">UNS8X</span>
+              <BrandName className="font-semibold" />
               <span className="text-xs text-muted-foreground">· Built on Solana</span>
             </div>
             <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-sm text-muted-foreground">

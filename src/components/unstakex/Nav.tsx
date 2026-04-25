@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { BrandName } from "./BrandName";
 
 export function Nav() {
   return (
@@ -9,7 +10,7 @@ export function Nav() {
             <div className="relative h-7 w-7 shrink-0 rounded-full" style={{ background: "linear-gradient(135deg, var(--neon-cyan), var(--neon-violet))" }}>
               <div className="absolute inset-[2px] rounded-full bg-background/80" />
             </div>
-            <span className="font-serif text-lg tracking-tight truncate">UNS8X</span>
+            <BrandName className="font-serif text-lg truncate" />
           </a>
           <nav className="hidden md:flex items-center gap-7 text-sm text-muted-foreground">
             <a href="#how" className="hover:text-foreground transition">How it works</a>

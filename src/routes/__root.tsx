@@ -29,7 +29,7 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "UNS8X" },
+      { title: "ExitraX" },
       { name: "description", content: "Instant unstaking on Solana." },
     ],
     links: [

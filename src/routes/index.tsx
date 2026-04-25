@@ -13,10 +13,10 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "UNS8X — Unstake Instantly. No Waiting." },
-      { name: "description", content: "UNS8X is the Solana liquidity layer for instant exits from locked staking positions. Turn locked SOL into liquid SOL in seconds." },
-      { property: "og:title", content: "UNS8X — Instant Solana Unstaking" },
-      { property: "og:description", content: "Skip the unbonding queue. Get liquid SOL instantly with UNS8X." },
+      { title: "ExitraX — Unstake Instantly. No Waiting." },
+      { name: "description", content: "ExitraX is the Solana liquidity layer for instant exits from locked staking positions. Turn locked SOL into liquid SOL in seconds." },
+      { property: "og:title", content: "ExitraX — Instant Solana Unstaking" },
+      { property: "og:description", content: "Skip the unbonding queue. Get liquid SOL instantly with ExitraX." },
     ],
   }),
 });

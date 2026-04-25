@@ -28,7 +28,7 @@ export function Footer() {
               <a href="#how" className="hover:text-foreground transition story-link">How it works</a>
               <a href="#lp" className="hover:text-foreground transition story-link">For LPs</a>
             </div>
-            <div className="text-xs text-muted-foreground">© 2026 UNS8X Labs</div>
+            <div className="text-xs text-muted-foreground">© 2026 ExitraX Labs</div>
           </div>
 
           <div className="mt-6 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">

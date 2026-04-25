@@ -265,11 +265,35 @@
 
   .cosmic-nebula {
     background:
-      radial-gradient(ellipse at 18% 18%, color-mix(in oklab, var(--neon-violet) 24%, transparent), transparent 38%),
-      radial-gradient(ellipse at 84% 22%, color-mix(in oklab, var(--neon-cyan) 18%, transparent), transparent 34%),
-      radial-gradient(ellipse at 50% 82%, color-mix(in oklab, var(--neon-blue) 16%, transparent), transparent 42%),
+      radial-gradient(ellipse at 18% 18%, color-mix(in oklab, var(--neon-violet) 34%, transparent), transparent 38%),
+      radial-gradient(ellipse at 84% 22%, color-mix(in oklab, var(--neon-cyan) 28%, transparent), transparent 34%),
+      radial-gradient(ellipse at 50% 82%, color-mix(in oklab, var(--neon-blue) 24%, transparent), transparent 42%),
       linear-gradient(180deg, color-mix(in oklab, var(--background) 72%, black), var(--background));
   }
+
+  .cosmic-aurora {
+    opacity: 0.5;
+    background:
+      conic-gradient(from 210deg at 28% 28%, transparent 0 16%, color-mix(in oklab, var(--neon-cyan) 28%, transparent) 22%, transparent 38%),
+      conic-gradient(from 40deg at 72% 35%, transparent 0 20%, color-mix(in oklab, var(--neon-violet) 30%, transparent) 30%, transparent 46%),
+      radial-gradient(ellipse at 50% 42%, color-mix(in oklab, var(--foreground) 7%, transparent), transparent 36%);
+    filter: blur(18px) saturate(140%);
+    animation: aurora-flow 14s ease-in-out infinite;
+  }
+
+  .orbital-ring {
+    position: absolute;
+    left: 50%;
+    top: 44%;
+    border: 1px solid color-mix(in oklab, var(--neon-cyan) 22%, transparent);
+    border-radius: 9999px;
+    box-shadow: 0 0 60px -28px color-mix(in oklab, var(--neon-cyan) 70%, transparent);
+    opacity: 0.44;
+    transform: translate(-50%, -50%);
+    animation: orbital-spin 42s linear infinite;
+  }
+  .orbital-ring-one { width: min(78vw, 62rem); height: min(42vw, 31rem); }
+  .orbital-ring-two { width: min(58vw, 46rem); height: min(30vw, 23rem); animation-duration: 64s; animation-direction: reverse; border-color: color-mix(in oklab, var(--neon-violet) 22%, transparent); }
 
   .starfield {
     background-repeat: repeat;
@@ -287,13 +311,24 @@
   }
 
   .starfield-near {
-    opacity: 0.55;
+    opacity: 0.7;
     background-image:
       radial-gradient(circle, color-mix(in oklab, var(--foreground) 95%, transparent) 0 1.4px, transparent 1.9px),
       radial-gradient(circle, color-mix(in oklab, var(--neon-violet) 72%, transparent) 0 1.2px, transparent 1.8px);
     background-position: 24px 42px, 120px 16px;
     background-size: 260px 260px, 340px 340px;
     animation: star-drift 46s linear infinite reverse;
+  }
+
+  .stellar-dust {
+    opacity: 0.38;
+    background-image:
+      radial-gradient(circle, color-mix(in oklab, var(--neon-cyan) 62%, transparent) 0 0.8px, transparent 1.2px),
+      radial-gradient(circle, color-mix(in oklab, var(--foreground) 52%, transparent) 0 0.7px, transparent 1.1px);
+    background-position: 40px 0, 0 70px;
+    background-size: 92px 92px, 136px 136px;
+    filter: blur(0.2px);
+    animation: dust-rise 18s ease-in-out infinite alternate;
   }
 
   .constellation-map { opacity: 0.72; }
@@ -329,4 +364,5 @@
   }
   .shooting-star-one { top: 16%; right: -8rem; }
   .shooting-star-two { top: 48%; right: 12%; animation-delay: 3.6s; animation-duration: 9s; }
+  .shooting-star-three { top: 30%; right: 42%; animation-delay: 6.4s; animation-duration: 11s; width: 120px; }
 }

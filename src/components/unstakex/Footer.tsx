@@ -18,7 +18,7 @@ export function Footer() {
                 className="h-7 w-7 rounded-lg"
                 style={{ background: "linear-gradient(135deg, var(--neon-cyan), var(--neon-violet))" }}
               />
-              <span className="font-semibold">uns8x</span>
+              <span className="font-semibold">UNS8X</span>
               <span className="text-xs text-muted-foreground">· Built on Solana</span>
             </div>
             <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-sm text-muted-foreground">
@@ -27,7 +27,7 @@ export function Footer() {
               <a href="#how" className="hover:text-foreground transition story-link">How it works</a>
               <a href="#lp" className="hover:text-foreground transition story-link">For LPs</a>
             </div>
-            <div className="text-xs text-muted-foreground">© 2026 uns8x Labs</div>
+            <div className="text-xs text-muted-foreground">© 2026 UNS8X Labs</div>
           </div>
 
           <div className="mt-6 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">

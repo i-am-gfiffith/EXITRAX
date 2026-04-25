@@ -69,6 +69,24 @@
     from { opacity: 0; transform: translateY(16px); }
     to { opacity: 1; transform: translateY(0); }
   }
+  @keyframes star-drift {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-120px, 90px, 0); }
+  }
+  @keyframes constellation-draw {
+    0%, 100% { stroke-dashoffset: 620; opacity: 0.16; }
+    45%, 70% { stroke-dashoffset: 0; opacity: 0.72; }
+  }
+  @keyframes star-pulse {
+    0%, 100% { opacity: 0.42; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+  @keyframes meteor {
+    0% { opacity: 0; transform: translate3d(0, 0, 0) rotate(-28deg); }
+    8% { opacity: 0.9; }
+    24% { opacity: 0; transform: translate3d(-420px, 230px, 0) rotate(-28deg); }
+    100% { opacity: 0; transform: translate3d(-420px, 230px, 0) rotate(-28deg); }
+  }
 }
 
 :root {
@@ -231,4 +249,71 @@
     height: 1px;
     background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--neon-cyan) 40%, transparent), transparent);
   }
+
+  .cosmic-nebula {
+    background:
+      radial-gradient(ellipse at 18% 18%, color-mix(in oklab, var(--neon-violet) 24%, transparent), transparent 38%),
+      radial-gradient(ellipse at 84% 22%, color-mix(in oklab, var(--neon-cyan) 18%, transparent), transparent 34%),
+      radial-gradient(ellipse at 50% 82%, color-mix(in oklab, var(--neon-blue) 16%, transparent), transparent 42%),
+      linear-gradient(180deg, color-mix(in oklab, var(--background) 72%, black), var(--background));
+  }
+
+  .starfield {
+    background-repeat: repeat;
+    will-change: transform;
+  }
+
+  .starfield-far {
+    opacity: 0.42;
+    background-image:
+      radial-gradient(circle, color-mix(in oklab, var(--foreground) 84%, transparent) 0 1px, transparent 1.4px),
+      radial-gradient(circle, color-mix(in oklab, var(--neon-cyan) 70%, transparent) 0 1px, transparent 1.4px);
+    background-position: 0 0, 68px 102px;
+    background-size: 150px 150px, 220px 220px;
+    animation: star-drift 80s linear infinite;
+  }
+
+  .starfield-near {
+    opacity: 0.55;
+    background-image:
+      radial-gradient(circle, color-mix(in oklab, var(--foreground) 95%, transparent) 0 1.4px, transparent 1.9px),
+      radial-gradient(circle, color-mix(in oklab, var(--neon-violet) 72%, transparent) 0 1.2px, transparent 1.8px);
+    background-position: 24px 42px, 120px 16px;
+    background-size: 260px 260px, 340px 340px;
+    animation: star-drift 46s linear infinite reverse;
+  }
+
+  .constellation-map { opacity: 0.72; }
+  .constellation path {
+    fill: none;
+    stroke: color-mix(in oklab, var(--neon-cyan) 62%, transparent);
+    stroke-width: 1.15;
+    stroke-dasharray: 620;
+    stroke-dashoffset: 620;
+    animation: constellation-draw 9s ease-in-out infinite;
+  }
+  .constellation circle {
+    fill: var(--foreground);
+    filter: drop-shadow(0 0 8px color-mix(in oklab, var(--neon-cyan) 80%, transparent));
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: star-pulse 3.8s ease-in-out infinite;
+  }
+  .constellation-b { animation-delay: 1.6s; }
+  .constellation-c { animation-delay: 3.2s; }
+  .constellation-b path, .constellation-b circle { animation-delay: 1.6s; }
+  .constellation-c path, .constellation-c circle { animation-delay: 3.2s; }
+
+  .shooting-star {
+    position: absolute;
+    width: 180px;
+    height: 1px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, transparent, var(--foreground), transparent);
+    filter: drop-shadow(0 0 10px color-mix(in oklab, var(--neon-cyan) 72%, transparent));
+    opacity: 0;
+    animation: meteor 7s ease-out infinite;
+  }
+  .shooting-star-one { top: 16%; right: -8rem; }
+  .shooting-star-two { top: 48%; right: 12%; animation-delay: 3.6s; animation-duration: 9s; }
 }

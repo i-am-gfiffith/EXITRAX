@@ -2,8 +2,12 @@ export function AnimatedBackground() {
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-background">
       <div className="cosmic-nebula absolute inset-0" />
+      <div className="cosmic-aurora absolute inset-0" />
+      <div className="orbital-ring orbital-ring-one" />
+      <div className="orbital-ring orbital-ring-two" />
       <div className="starfield starfield-far absolute inset-0" />
       <div className="starfield starfield-near absolute inset-0" />
+      <div className="stellar-dust absolute inset-0" />
 
       <svg
         aria-hidden="true"
@@ -41,6 +45,7 @@ export function AnimatedBackground() {
 
       <div className="shooting-star shooting-star-one" />
       <div className="shooting-star shooting-star-two" />
+      <div className="shooting-star shooting-star-three" />
     </div>
   );
 }

@@ -19,12 +19,12 @@ export function LPPanel() {
           Provide SOL liquidity. Acquire locked positions at a discount. Redeem at full value when they unlock.
         </p>
 
-        <div className="mt-12 flex justify-center items-center gap-12">
+        <div className="mt-12 grid grid-cols-3 gap-3 sm:flex sm:items-center sm:justify-center sm:gap-12">
           {stats.map((s, i) => (
-            <motion.div key={s.v} className="flex items-center gap-12" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.4, delay: i * 0.07 }}>
-              {i > 0 && <div className="h-12 w-px bg-white/10" />}
+            <motion.div key={s.v} className="flex items-center gap-0 sm:gap-12" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.4, delay: i * 0.07 }}>
+              {i > 0 && <div className="hidden h-12 w-px bg-foreground/20 sm:block" />}
               <div>
-                <div className="text-4xl font-black tabular-nums">{s.k}</div>
+                <div className="text-2xl font-black tabular-nums sm:text-4xl">{s.k}</div>
                 <div className="mt-1 text-[10px] uppercase tracking-widest text-muted-foreground">{s.v}</div>
               </div>
             </motion.div>
@@ -33,7 +33,7 @@ export function LPPanel() {
 
         <Button
           size="lg"
-          className="mt-12 rounded-full text-primary-foreground px-8"
+            className="mt-12 rounded-md border-2 border-foreground px-8 font-black uppercase text-primary-foreground shadow-brutal-sm"
           style={{ background: "linear-gradient(135deg, var(--neon-violet), var(--neon-blue))" }}
         >
           Become an LP

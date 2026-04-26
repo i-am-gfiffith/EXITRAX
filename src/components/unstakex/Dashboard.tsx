@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Zap } from "lucide-react";
 import { discountPct, exitValue } from "@/lib/pricing";
 import { useCountUp } from "@/hooks/use-count-up";
+import { motion } from "framer-motion";
 
 export function Dashboard() {
   const locked = 10;
@@ -20,24 +21,20 @@ export function Dashboard() {
       <div className="mx-auto max-w-3xl px-4">
         <div className="text-center">
           <div className="eyebrow justify-center inline-flex">Simulator</div>
-          <h2 className="mt-5 text-3xl md:text-5xl font-medium tracking-tight">
-            Your <span className="font-serif italic text-gradient">instant exit</span> price
+          <h2 className="mt-5 text-3xl md:text-5xl font-black uppercase tracking-tight">
+            Your <span className="text-gradient">instant exit</span> price
           </h2>
         </div>
 
-        <div className="mt-14 relative rounded-[2rem] p-8 sm:p-10 overflow-hidden" style={{
-          background: "linear-gradient(160deg, color-mix(in oklab, white 6%, transparent), color-mix(in oklab, var(--neon-violet) 6%, transparent))",
-          border: "1px solid color-mix(in oklab, white 10%, transparent)",
-          backdropFilter: "blur(20px)",
-        }}>
+        <motion.div className="mt-14 relative overflow-hidden rounded-md border-2 border-foreground bg-card p-8 shadow-brutal sm:p-10" initial={{ opacity: 0, y: 26 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.55 }}>
           <div className="flex items-baseline justify-between">
             <div>
               <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Locked</div>
-              <div className="mt-2 font-serif text-4xl tabular-nums">{locked.toFixed(2)}<span className="text-base text-muted-foreground ml-2">SOL</span></div>
+              <div className="mt-2 text-4xl font-black tabular-nums">{locked.toFixed(2)}<span className="text-base text-muted-foreground ml-2">SOL</span></div>
             </div>
             <div className="text-right">
               <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Unlocks in</div>
-              <div className="mt-2 font-serif text-4xl tabular-nums">{days}<span className="text-base text-muted-foreground ml-1">d</span></div>
+              <div className="mt-2 text-4xl font-black tabular-nums">{days}<span className="text-base text-muted-foreground ml-1">d</span></div>
             </div>
           </div>
 
@@ -60,13 +57,13 @@ export function Dashboard() {
           <div className="mt-8 grid grid-cols-2 gap-8">
             <div>
               <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Discount</div>
-              <div className="mt-2 font-serif text-3xl tabular-nums" style={{ color: "var(--neon-violet)" }}>
+              <div className="mt-2 text-3xl font-black tabular-nums" style={{ color: "var(--neon-violet)" }}>
                 {dAnim.toFixed(2)}<span className="text-lg">%</span>
               </div>
             </div>
             <div className="text-right">
               <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Instant exit</div>
-              <div className="mt-2 font-serif text-3xl tabular-nums" style={{ color: "var(--neon-cyan)" }}>
+              <div className="mt-2 text-3xl font-black tabular-nums" style={{ color: "var(--neon-cyan)" }}>
                 {vAnim.toFixed(3)}<span className="text-lg text-muted-foreground ml-2">SOL</span>
               </div>
             </div>
@@ -80,7 +77,7 @@ export function Dashboard() {
             <Zap className="mr-2 h-4 w-4" />
             Instant Exit
           </Button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

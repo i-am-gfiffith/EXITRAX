@@ -15,23 +15,23 @@ export function Problem() {
           </h2>
         </div>
 
-        <div className="mt-14 grid gap-px bg-white/10 rounded-2xl overflow-hidden md:grid-cols-2">
-          <motion.div className="bg-background p-8" initial={{ opacity: 0, x: -22 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.35 }} transition={{ duration: 0.45 }}>
+        <div className="mt-14 grid overflow-hidden rounded-md border-2 border-foreground bg-foreground shadow-brutal md:grid-cols-2">
+          <motion.div className="bg-background p-7 sm:p-8" initial={{ opacity: 0, x: -22 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.35 }} transition={{ duration: 0.45 }}>
             <Clock className="h-5 w-5 text-muted-foreground" />
-            <div className="mt-5 font-medium">Traditional</div>
-            <div className="mt-2 text-sm text-muted-foreground leading-relaxed">
+            <div className="mt-5 text-lg font-black uppercase">Traditional</div>
+            <div className="mt-2 text-sm leading-6 text-muted-foreground">
               Capital frozen for ~14 days in unbonding queues while opportunity cost compounds.
             </div>
             <div className="mt-6 text-3xl font-black tabular-nums text-muted-foreground">14d</div>
           </motion.div>
-          <motion.div className="bg-primary p-8 relative text-primary-foreground" initial={{ opacity: 0, x: 22 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.35 }} transition={{ duration: 0.45, delay: 0.08 }}>
+          <motion.div className="relative bg-primary p-7 text-primary-foreground sm:p-8" initial={{ opacity: 0, x: 22 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.35 }} transition={{ duration: 0.45, delay: 0.08 }}>
             <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, var(--neon-cyan), transparent)" }} />
-            <Zap className="h-5 w-5 text-[var(--neon-cyan)]" />
-            <div className="mt-5 font-medium"><BrandName /></div>
-            <div className="mt-2 text-sm text-muted-foreground leading-relaxed">
+            <Zap className="h-5 w-5 text-primary-foreground" />
+            <div className="mt-5 text-lg font-black uppercase"><BrandName /></div>
+            <div className="mt-2 text-sm leading-6 text-muted-foreground">
               Liquid SOL in your wallet — settled on-chain in under two seconds.
             </div>
-            <div className="mt-6 text-3xl font-black tabular-nums text-[var(--neon-cyan)]">&lt; 2s</div>
+            <div className="mt-6 text-3xl font-black tabular-nums text-primary-foreground">&lt; 2s</div>
           </motion.div>
         </div>
       </div>

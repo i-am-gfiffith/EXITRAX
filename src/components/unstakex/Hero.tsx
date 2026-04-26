@@ -4,19 +4,19 @@ import { motion } from "framer-motion";
 
 export function Hero() {
   return (
-    <section id="top" className="relative pt-24 pb-28">
+    <section id="top" className="relative pt-20 pb-24 sm:pt-24 sm:pb-28">
       <div className="mx-auto max-w-7xl px-4">
-        <div className="grid gap-16 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+        <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-16">
           <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}>
             <div className="eyebrow">Live on Solana — v1.0</div>
 
-            <h1 className="mt-6 text-5xl sm:text-6xl md:text-7xl font-medium tracking-tight leading-[1.02]">
+            <h1 className="mt-6 max-w-3xl text-5xl font-black uppercase leading-[0.98] tracking-normal sm:text-6xl md:text-7xl">
               Unstake <span className="font-black uppercase">instantly.</span>
               <br />
               <span className="text-gradient">No waiting.</span>
             </h1>
 
-            <p className="mt-7 max-w-lg text-lg text-muted-foreground leading-relaxed">
+            <p className="mt-7 max-w-xl text-lg leading-8 text-muted-foreground sm:text-xl">
               The liquidity layer for Solana stakers. Convert locked positions into liquid SOL in
               <span className="font-black text-foreground"> seconds</span>, not days.
             </p>
@@ -24,7 +24,7 @@ export function Hero() {
             <div className="mt-9 flex flex-wrap items-center gap-4">
               <Button
                 size="lg"
-                className="rounded-full px-6 text-primary-foreground glow-cyan hover-lift"
+                className="rounded-md border-2 border-foreground px-6 font-black uppercase text-primary-foreground shadow-brutal-sm hover-lift"
                 style={{ background: "linear-gradient(135deg, var(--neon-cyan), var(--neon-blue))" }}
                 asChild
               >
@@ -32,23 +32,23 @@ export function Hero() {
                   <Zap className="mr-1 h-4 w-4" /> Launch App
                 </a>
               </Button>
-              <a href="#how" className="group inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition">
+              <a href="#how" className="group inline-flex items-center gap-2 text-sm font-bold uppercase text-muted-foreground transition hover:text-foreground">
                 View demo
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
             </div>
 
-            <div className="mt-14 flex items-center gap-8">
+            <div className="mt-12 grid grid-cols-3 gap-3 sm:flex sm:items-center sm:gap-8">
               {[
                 { k: "$42M", v: "Liquidity" },
                 { k: "<2s", v: "Exit time" },
                 { k: "12.4%", v: "LP APY" },
               ].map((s, i) => (
-                <div key={s.v} className="flex items-center gap-8">
-                  {i > 0 && <div className="h-8 w-px bg-white/10" />}
+                <div key={s.v} className="flex items-center gap-0 sm:gap-8">
+                  {i > 0 && <div className="hidden h-8 w-px bg-foreground/20 sm:block" />}
                   <div>
-                    <div className="font-black text-2xl tabular-nums">{s.k}</div>
-                    <div className="mt-0.5 text-[10px] uppercase tracking-widest text-muted-foreground">{s.v}</div>
+                    <div className="text-xl font-black tabular-nums sm:text-2xl">{s.k}</div>
+                    <div className="mt-1 text-[10px] uppercase tracking-widest text-muted-foreground">{s.v}</div>
                   </div>
                 </div>
               ))}
@@ -56,7 +56,7 @@ export function Hero() {
           </motion.div>
 
           <motion.div className="relative" initial={{ opacity: 0, x: 34, rotate: 1.5 }} animate={{ opacity: 1, x: 0, rotate: 0 }} transition={{ duration: 0.75, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}>
-            <div className="relative overflow-hidden rounded-md border-2 border-foreground bg-card p-8 shadow-brutal">
+            <div className="relative overflow-hidden rounded-md border-2 border-foreground bg-card p-6 shadow-brutal sm:p-8">
               <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full blur-3xl opacity-40"
                 style={{ background: "radial-gradient(circle, var(--neon-violet), transparent 70%)" }} />
 
@@ -70,7 +70,7 @@ export function Hero() {
 
                 <div className="mt-8">
                   <div className="flex items-baseline gap-3">
-                    <span className="font-black text-7xl tracking-tight tabular-nums">10.00</span>
+                    <span className="text-6xl font-black tracking-normal tabular-nums sm:text-7xl">10.00</span>
                     <span className="text-muted-foreground">SOL</span>
                   </div>
                   <div className="mt-2 text-xs text-muted-foreground">Unlocks in 14 days</div>
@@ -85,7 +85,7 @@ export function Hero() {
                 </div>
 
                 <Button
-                  className="mt-8 w-full rounded-full text-primary-foreground"
+                  className="mt-8 w-full rounded-md border-2 border-foreground font-black uppercase text-primary-foreground shadow-brutal-sm"
                   style={{ background: "linear-gradient(135deg, var(--neon-cyan), var(--neon-violet))" }}
                 >
                   Instant Exit

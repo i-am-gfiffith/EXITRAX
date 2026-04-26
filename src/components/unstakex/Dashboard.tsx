@@ -26,15 +26,15 @@ export function Dashboard() {
           </h2>
         </div>
 
-        <motion.div className="mt-14 relative overflow-hidden rounded-md border-2 border-foreground bg-card p-8 shadow-brutal sm:p-10" initial={{ opacity: 0, y: 26 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.55 }}>
-          <div className="flex items-baseline justify-between">
+        <motion.div className="mt-14 relative overflow-hidden rounded-md border-2 border-foreground bg-card p-6 shadow-brutal sm:p-10" initial={{ opacity: 0, y: 26 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.55 }}>
+          <div className="grid grid-cols-2 gap-4">
             <div>
               <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Locked</div>
-              <div className="mt-2 text-4xl font-black tabular-nums">{locked.toFixed(2)}<span className="text-base text-muted-foreground ml-2">SOL</span></div>
+              <div className="mt-2 text-3xl font-black tabular-nums sm:text-4xl">{locked.toFixed(2)}<span className="ml-2 text-base text-muted-foreground">SOL</span></div>
             </div>
             <div className="text-right">
               <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Unlocks in</div>
-              <div className="mt-2 text-4xl font-black tabular-nums">{days}<span className="text-base text-muted-foreground ml-1">d</span></div>
+              <div className="mt-2 text-3xl font-black tabular-nums sm:text-4xl">{days}<span className="ml-1 text-base text-muted-foreground">d</span></div>
             </div>
           </div>
 
@@ -54,24 +54,24 @@ export function Dashboard() {
 
           <div className="mt-10 hairline" />
 
-          <div className="mt-8 grid grid-cols-2 gap-8">
+          <div className="mt-8 grid grid-cols-2 gap-4 sm:gap-8">
             <div>
               <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Discount</div>
-              <div className="mt-2 text-3xl font-black tabular-nums" style={{ color: "var(--neon-violet)" }}>
+              <div className="mt-2 text-3xl font-black tabular-nums text-card-foreground">
                 {dAnim.toFixed(2)}<span className="text-lg">%</span>
               </div>
             </div>
             <div className="text-right">
               <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Instant exit</div>
-              <div className="mt-2 text-3xl font-black tabular-nums" style={{ color: "var(--neon-cyan)" }}>
-                {vAnim.toFixed(3)}<span className="text-lg text-muted-foreground ml-2">SOL</span>
+              <div className="mt-2 text-3xl font-black tabular-nums text-card-foreground">
+                {vAnim.toFixed(3)}<span className="ml-2 text-lg text-muted-foreground">SOL</span>
               </div>
             </div>
           </div>
 
           <Button
             size="lg"
-            className="mt-10 w-full rounded-full text-primary-foreground"
+            className="mt-10 w-full rounded-md border-2 border-foreground font-black uppercase text-primary-foreground shadow-brutal-sm"
             style={{ background: "linear-gradient(135deg, var(--neon-cyan), var(--neon-violet))" }}
           >
             <Zap className="mr-2 h-4 w-4" />

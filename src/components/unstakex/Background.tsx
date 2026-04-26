@@ -1,8 +1,26 @@
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+
 export function AnimatedBackground() {
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!rootRef.current) return;
+
+    const context = gsap.context(() => {
+      gsap.to(".market-grid", { backgroundPosition: "96px 96px", duration: 18, ease: "none", repeat: -1 });
+      gsap.to(".cosmic-aurora", { xPercent: 4, yPercent: -3, scale: 1.08, duration: 8, yoyo: true, repeat: -1, ease: "sine.inOut" });
+      gsap.to(".constellation-map", { opacity: 0.84, duration: 2.4, yoyo: true, repeat: -1, ease: "power1.inOut" });
+    }, rootRef);
+
+    return () => context.revert();
+  }, []);
+
   return (
-    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-background">
+    <div ref={rootRef} className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-background">
       <div className="cosmic-nebula absolute inset-0" />
       <div className="cosmic-aurora absolute inset-0" />
+      <div className="market-grid absolute inset-0" />
       <div className="orbital-ring orbital-ring-one" />
       <div className="orbital-ring orbital-ring-two" />
       <div className="starfield starfield-far absolute inset-0" />

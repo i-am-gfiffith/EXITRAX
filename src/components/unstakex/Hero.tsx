@@ -1,23 +1,24 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Zap } from "lucide-react";
+import { motion } from "framer-motion";
 
 export function Hero() {
   return (
     <section id="top" className="relative pt-24 pb-28">
       <div className="mx-auto max-w-7xl px-4">
         <div className="grid gap-16 lg:grid-cols-[1.1fr_1fr] lg:items-center">
-          <div className="animate-fade-up">
+          <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}>
             <div className="eyebrow">Live on Solana — v1.0</div>
 
             <h1 className="mt-6 text-5xl sm:text-6xl md:text-7xl font-medium tracking-tight leading-[1.02]">
-              Unstake <span className="font-serif italic font-normal">instantly.</span>
+              Unstake <span className="font-black uppercase">instantly.</span>
               <br />
               <span className="text-gradient">No waiting.</span>
             </h1>
 
             <p className="mt-7 max-w-lg text-lg text-muted-foreground leading-relaxed">
               The liquidity layer for Solana stakers. Convert locked positions into liquid SOL in
-              <span className="font-serif italic text-foreground"> seconds</span>, not days.
+              <span className="font-black text-foreground"> seconds</span>, not days.
             </p>
 
             <div className="mt-9 flex flex-wrap items-center gap-4">
@@ -46,20 +47,16 @@ export function Hero() {
                 <div key={s.v} className="flex items-center gap-8">
                   {i > 0 && <div className="h-8 w-px bg-white/10" />}
                   <div>
-                    <div className="font-serif text-2xl tabular-nums">{s.k}</div>
+                    <div className="font-black text-2xl tabular-nums">{s.k}</div>
                     <div className="mt-0.5 text-[10px] uppercase tracking-widest text-muted-foreground">{s.v}</div>
                   </div>
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          <div className="relative animate-fade-up" style={{ animationDelay: "0.15s" }}>
-            <div className="relative rounded-[2rem] p-8 overflow-hidden" style={{
-              background: "linear-gradient(160deg, color-mix(in oklab, white 8%, transparent), color-mix(in oklab, var(--neon-violet) 8%, transparent))",
-              backdropFilter: "blur(28px)",
-              border: "1px solid color-mix(in oklab, white 12%, transparent)",
-            }}>
+          <motion.div className="relative" initial={{ opacity: 0, x: 34, rotate: 1.5 }} animate={{ opacity: 1, x: 0, rotate: 0 }} transition={{ duration: 0.75, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}>
+            <div className="relative overflow-hidden rounded-md border-2 border-foreground bg-card p-8 shadow-brutal">
               <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full blur-3xl opacity-40"
                 style={{ background: "radial-gradient(circle, var(--neon-violet), transparent 70%)" }} />
 
@@ -73,7 +70,7 @@ export function Hero() {
 
                 <div className="mt-8">
                   <div className="flex items-baseline gap-3">
-                    <span className="font-serif text-7xl tracking-tight tabular-nums">10.00</span>
+                    <span className="font-black text-7xl tracking-tight tabular-nums">10.00</span>
                     <span className="text-muted-foreground">SOL</span>
                   </div>
                   <div className="mt-2 text-xs text-muted-foreground">Unlocks in 14 days</div>
@@ -95,7 +92,7 @@ export function Hero() {
                 </Button>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

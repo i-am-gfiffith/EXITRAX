@@ -140,8 +140,8 @@
 }
 
 .dark {
-  --background: oklch(0.16 0.03 270);
-  --foreground: oklch(0.97 0.01 250);
+  --background: oklch(0.08 0.01 260);
+  --foreground: oklch(0.98 0.01 95);
 }
 
 @layer base {

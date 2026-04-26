@@ -110,7 +110,7 @@
   --foreground: oklch(0.98 0.01 95);
 
   --card: oklch(0.96 0.02 95);
-  --card-foreground: oklch(0.97 0.01 250);
+  --card-foreground: oklch(0.08 0.01 260);
   --popover: oklch(0.20 0.04 270);
   --popover-foreground: oklch(0.97 0.01 250);
 
@@ -257,6 +257,8 @@
 
   .shadow-brutal { box-shadow: 12px 12px 0 var(--primary); color: var(--background); }
   .shadow-brutal-sm { box-shadow: 5px 5px 0 var(--accent); }
+  .shadow-brutal .text-muted-foreground,
+  .bg-primary .text-muted-foreground { color: color-mix(in oklab, var(--background) 72%, transparent); }
 
   .cosmic-nebula {
     background:

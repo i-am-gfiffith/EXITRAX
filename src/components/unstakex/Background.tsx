@@ -6,11 +6,12 @@ export function AnimatedBackground() {
 
   useEffect(() => {
     if (!rootRef.current) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const context = gsap.context(() => {
-      gsap.to(".market-grid", { backgroundPosition: "96px 96px", duration: 18, ease: "none", repeat: -1 });
-      gsap.to(".cosmic-aurora", { xPercent: 4, yPercent: -3, scale: 1.08, duration: 8, yoyo: true, repeat: -1, ease: "sine.inOut" });
-      gsap.to(".constellation-map", { opacity: 0.84, duration: 2.4, yoyo: true, repeat: -1, ease: "power1.inOut" });
+      gsap.to(".market-grid", { backgroundPosition: "96px 96px", duration: 24, ease: "none", repeat: -1 });
+      gsap.to(".cosmic-aurora", { xPercent: 2, yPercent: -2, scale: 1.04, duration: 12, yoyo: true, repeat: -1, ease: "sine.inOut" });
+      gsap.to(".constellation-map", { opacity: 0.62, duration: 3.2, yoyo: true, repeat: -1, ease: "power1.inOut" });
     }, rootRef);
 
     return () => context.revert();

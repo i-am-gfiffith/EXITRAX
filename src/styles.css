@@ -150,9 +150,9 @@
   body {
     font-family: var(--font-sans);
     background-image:
-      radial-gradient(ellipse 80% 50% at 20% 0%, color-mix(in oklab, var(--neon-violet) 18%, transparent), transparent 60%),
-      radial-gradient(ellipse 60% 50% at 90% 20%, color-mix(in oklab, var(--neon-cyan) 14%, transparent), transparent 60%),
-      radial-gradient(ellipse 70% 60% at 50% 110%, color-mix(in oklab, var(--neon-blue) 16%, transparent), transparent 60%);
+      linear-gradient(90deg, color-mix(in oklab, var(--foreground) 5%, transparent) 1px, transparent 1px),
+      linear-gradient(color-mix(in oklab, var(--foreground) 5%, transparent) 1px, transparent 1px);
+    background-size: 32px 32px;
     background-attachment: fixed;
     min-height: 100vh;
   }
@@ -160,17 +160,9 @@
 
 @layer components {
   .glass {
-    background: linear-gradient(
-      135deg,
-      color-mix(in oklab, white 6%, transparent),
-      color-mix(in oklab, white 2%, transparent)
-    );
-    backdrop-filter: blur(20px) saturate(140%);
-    -webkit-backdrop-filter: blur(20px) saturate(140%);
-    border: 1px solid color-mix(in oklab, white 10%, transparent);
-    box-shadow:
-      0 1px 0 0 color-mix(in oklab, white 8%, transparent) inset,
-      0 20px 60px -20px color-mix(in oklab, var(--neon-blue) 30%, transparent);
+    background: var(--background);
+    border: 2px solid var(--foreground);
+    box-shadow: 8px 8px 0 var(--primary);
   }
 
   .glass-strong {
@@ -202,7 +194,7 @@
   }
 
   .text-gradient {
-    background: linear-gradient(120deg, var(--neon-cyan), var(--neon-violet) 60%, var(--neon-blue));
+    background: linear-gradient(120deg, var(--neon-cyan), var(--neon-violet) 56%, var(--neon-blue));
     background-size: 200% 200%;
     -webkit-background-clip: text;
     background-clip: text;
@@ -259,9 +251,12 @@
   }
 
   .hairline {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--neon-cyan) 40%, transparent), transparent);
+    height: 2px;
+    background: var(--foreground);
   }
+
+  .shadow-brutal { box-shadow: 12px 12px 0 var(--primary); color: var(--background); }
+  .shadow-brutal-sm { box-shadow: 5px 5px 0 var(--accent); }
 
   .cosmic-nebula {
     background:

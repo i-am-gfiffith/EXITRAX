@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 
 export function LPPanel() {
   const stats = [
@@ -11,8 +12,8 @@ export function LPPanel() {
     <section id="lp" className="py-28">
       <div className="mx-auto max-w-3xl px-4 text-center">
         <div className="eyebrow justify-center inline-flex">For Liquidity Providers</div>
-        <h2 className="mt-5 text-3xl md:text-5xl font-medium tracking-tight">
-          Earn from <span className="font-serif italic text-gradient">time arbitrage</span>
+        <h2 className="mt-5 text-3xl md:text-5xl font-black uppercase tracking-tight">
+          Earn from <span className="text-gradient">time arbitrage</span>
         </h2>
         <p className="mt-5 text-muted-foreground max-w-xl mx-auto leading-relaxed">
           Provide SOL liquidity. Acquire locked positions at a discount. Redeem at full value when they unlock.
@@ -20,13 +21,13 @@ export function LPPanel() {
 
         <div className="mt-12 flex justify-center items-center gap-12">
           {stats.map((s, i) => (
-            <div key={s.v} className="flex items-center gap-12">
+            <motion.div key={s.v} className="flex items-center gap-12" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.4, delay: i * 0.07 }}>
               {i > 0 && <div className="h-12 w-px bg-white/10" />}
               <div>
-                <div className="font-serif text-4xl tabular-nums">{s.k}</div>
+                <div className="text-4xl font-black tabular-nums">{s.k}</div>
                 <div className="mt-1 text-[10px] uppercase tracking-widest text-muted-foreground">{s.v}</div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 

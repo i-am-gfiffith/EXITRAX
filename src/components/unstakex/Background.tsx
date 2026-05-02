@@ -32,39 +32,85 @@ export function AnimatedBackground() {
         aria-hidden="true"
         className="constellation-map absolute inset-0 h-full w-full"
         viewBox="0 0 1200 800"
-        preserveAspectRatio="xMidYMid slice"
+        preserveAspectRatio="none"
       >
         <g className="constellation constellation-a">
-          <path d="M116 208 L218 164 L332 232 L446 180 L565 265" />
-          <circle cx="116" cy="208" r="3.4" />
-          <circle cx="218" cy="164" r="2.7" />
-          <circle cx="332" cy="232" r="3.1" />
-          <circle cx="446" cy="180" r="2.5" />
-          <circle cx="565" cy="265" r="3.8" />
+          <path d="M60 90 L180 60 L300 120 L420 80 L560 150" />
+          <circle cx="60" cy="90" r="3.4" />
+          <circle cx="180" cy="60" r="2.7" />
+          <circle cx="300" cy="120" r="3.1" />
+          <circle cx="420" cy="80" r="2.5" />
+          <circle cx="560" cy="150" r="3.8" />
         </g>
 
         <g className="constellation constellation-b">
-          <path d="M760 152 L836 234 L930 192 L1018 288 L1098 238" />
-          <circle cx="760" cy="152" r="2.9" />
-          <circle cx="836" cy="234" r="3.5" />
-          <circle cx="930" cy="192" r="2.6" />
-          <circle cx="1018" cy="288" r="3.2" />
-          <circle cx="1098" cy="238" r="2.8" />
+          <path d="M760 60 L836 140 L930 100 L1018 190 L1140 140" />
+          <circle cx="760" cy="60" r="2.9" />
+          <circle cx="836" cy="140" r="3.5" />
+          <circle cx="930" cy="100" r="2.6" />
+          <circle cx="1018" cy="190" r="3.2" />
+          <circle cx="1140" cy="140" r="2.8" />
+        </g>
+
+        <g className="constellation constellation-a">
+          <path d="M80 280 L210 250 L340 310 L470 270 L600 330" />
+          <circle cx="80" cy="280" r="3" />
+          <circle cx="210" cy="250" r="2.6" />
+          <circle cx="340" cy="310" r="3.2" />
+          <circle cx="470" cy="270" r="2.4" />
+          <circle cx="600" cy="330" r="3.5" />
+        </g>
+
+        <g className="constellation constellation-b">
+          <path d="M720 290 L840 250 L960 320 L1080 280 L1170 350" />
+          <circle cx="720" cy="290" r="2.8" />
+          <circle cx="840" cy="250" r="3.3" />
+          <circle cx="960" cy="320" r="2.5" />
+          <circle cx="1080" cy="280" r="3.1" />
+          <circle cx="1170" cy="350" r="2.9" />
         </g>
 
         <g className="constellation constellation-c">
-          <path d="M240 560 L352 500 L472 592 L610 534 L742 618" />
-          <circle cx="240" cy="560" r="2.8" />
-          <circle cx="352" cy="500" r="3.3" />
-          <circle cx="472" cy="592" r="2.5" />
-          <circle cx="610" cy="534" r="3.6" />
-          <circle cx="742" cy="618" r="2.9" />
+          <path d="M100 460 L240 420 L380 490 L520 440 L660 510" />
+          <circle cx="100" cy="460" r="2.8" />
+          <circle cx="240" cy="420" r="3.3" />
+          <circle cx="380" cy="490" r="2.5" />
+          <circle cx="520" cy="440" r="3.6" />
+          <circle cx="660" cy="510" r="2.9" />
+        </g>
+
+        <g className="constellation constellation-a">
+          <path d="M740 470 L860 440 L980 500 L1100 460 L1180 530" />
+          <circle cx="740" cy="470" r="3" />
+          <circle cx="860" cy="440" r="2.7" />
+          <circle cx="980" cy="500" r="3.2" />
+          <circle cx="1100" cy="460" r="2.6" />
+          <circle cx="1180" cy="530" r="3.4" />
+        </g>
+
+        <g className="constellation constellation-c">
+          <path d="M120 660 L260 620 L400 690 L540 640 L680 710" />
+          <circle cx="120" cy="660" r="2.9" />
+          <circle cx="260" cy="620" r="3.4" />
+          <circle cx="400" cy="690" r="2.6" />
+          <circle cx="540" cy="640" r="3.5" />
+          <circle cx="680" cy="710" r="3" />
+        </g>
+
+        <g className="constellation constellation-b">
+          <path d="M760 670 L880 630 L1000 700 L1120 660" />
+          <circle cx="760" cy="670" r="2.7" />
+          <circle cx="880" cy="630" r="3.2" />
+          <circle cx="1000" cy="700" r="2.5" />
+          <circle cx="1120" cy="660" r="3.3" />
         </g>
       </svg>
 
       <div className="shooting-star shooting-star-one" />
       <div className="shooting-star shooting-star-two" />
       <div className="shooting-star shooting-star-three" />
+      <div className="shooting-star shooting-star-four" />
+      <div className="shooting-star shooting-star-five" />
     </div>
   );
 }

@@ -380,7 +380,9 @@
     opacity: 0;
     animation: meteor 7s ease-out infinite;
   }
-  .shooting-star-one { top: 16%; right: -8rem; }
-  .shooting-star-two { top: 48%; right: 12%; animation-delay: 3.6s; animation-duration: 9s; }
-  .shooting-star-three { top: 30%; right: 42%; animation-delay: 6.4s; animation-duration: 11s; width: 120px; }
+  .shooting-star-one { top: 12%; right: -8rem; }
+  .shooting-star-two { top: 38%; right: 12%; animation-delay: 3.6s; animation-duration: 9s; }
+  .shooting-star-three { top: 22%; right: 42%; animation-delay: 6.4s; animation-duration: 11s; width: 120px; }
+  .shooting-star-four { top: 64%; right: 8%; animation-delay: 2.2s; animation-duration: 10s; width: 150px; }
+  .shooting-star-five { top: 82%; right: 36%; animation-delay: 5s; animation-duration: 12s; width: 200px; }
 }

@@ -8,7 +8,7 @@ export function Nav() {
         <div className="glass flex items-center justify-between gap-2 rounded-md px-3 py-2.5 backdrop-blur-sm sm:px-5 sm:py-3">
           <a href="#top" className="flex items-center gap-2.5 min-w-0">
             <div className="relative h-7 w-7 shrink-0 rounded-sm border-2 border-foreground bg-primary shadow-brutal-sm">
-              <div className="absolute inset-[6px] bg-background" />
+              <div className="absolute inset-[6px] bg-background/70 backdrop-blur-sm" />
             </div>
             <BrandName className="text-lg font-black uppercase truncate" />
           </a>

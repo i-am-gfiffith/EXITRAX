@@ -43,7 +43,7 @@ export function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={s.name}
-                    className="group relative grid h-10 w-10 place-items-center rounded-md border-2 border-foreground/30 bg-background transition-all duration-300 hover:-translate-y-0.5 hover:border-foreground hover:bg-primary"
+                    className="group relative grid h-10 w-10 place-items-center rounded-md border-2 border-foreground/30 bg-background/40 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-foreground hover:bg-primary"
                   >
                     <Icon className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-primary-foreground" />
                     <span

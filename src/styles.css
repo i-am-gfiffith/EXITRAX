@@ -88,8 +88,12 @@
     100% { opacity: 0; transform: translate3d(-420px, 230px, 0) rotate(-28deg); }
   }
   @keyframes aurora-flow {
-    0%, 100% { transform: translate3d(-3%, -2%, 0) rotate(-2deg) scale(1); opacity: 0.34; }
-    50% { transform: translate3d(3%, 2%, 0) rotate(2deg) scale(1.08); opacity: 0.58; }
+    0%, 100% { transform: translate3d(-3%, -2%, 0) rotate(-2deg) scale(1); opacity: 0.42; }
+    50% { transform: translate3d(3%, 2%, 0) rotate(2deg) scale(1.1); opacity: 0.65; }
+  }
+  @keyframes nebula-shift {
+    0%, 100% { background-position: 0% 0%, 100% 0%, 50% 50%, 0% 100%, 100% 100%, 50% 100%, 0 0; }
+    50% { background-position: 20% 10%, 80% 20%, 60% 60%, 10% 90%, 90% 80%, 60% 95%, 0 0; }
   }
   @keyframes orbital-spin {
     from { transform: translate(-50%, -50%) rotate(0deg); }
@@ -276,19 +280,29 @@
 
   .cosmic-nebula {
     background:
-      radial-gradient(ellipse at 16% 18%, color-mix(in oklab, var(--primary) 22%, transparent), transparent 36%),
-      radial-gradient(ellipse at 86% 18%, color-mix(in oklab, var(--accent) 18%, transparent), transparent 32%),
-      linear-gradient(180deg, color-mix(in oklab, var(--background) 88%, black), var(--background));
+      radial-gradient(ellipse 60% 50% at 18% 22%, color-mix(in oklab, var(--neon-cyan) 32%, transparent), transparent 60%),
+      radial-gradient(ellipse 55% 45% at 82% 18%, color-mix(in oklab, var(--accent) 26%, transparent), transparent 60%),
+      radial-gradient(ellipse 70% 55% at 50% 55%, color-mix(in oklab, var(--success) 22%, transparent), transparent 65%),
+      radial-gradient(ellipse 60% 50% at 12% 78%, color-mix(in oklab, var(--neon-blue) 28%, transparent), transparent 60%),
+      radial-gradient(ellipse 65% 55% at 88% 82%, color-mix(in oklab, var(--neon-violet) 22%, transparent), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 50% 95%, color-mix(in oklab, var(--neon-cyan) 18%, transparent), transparent 70%),
+      linear-gradient(180deg, color-mix(in oklab, var(--background) 92%, black), var(--background));
+    background-size: 200% 200%;
+    animation: nebula-shift 30s ease-in-out infinite;
+    will-change: background-position;
   }
 
   .cosmic-aurora {
-    opacity: 0.36;
+    opacity: 0.5;
     background:
-      conic-gradient(from 210deg at 28% 28%, transparent 0 16%, color-mix(in oklab, var(--neon-cyan) 28%, transparent) 22%, transparent 38%),
-      conic-gradient(from 40deg at 72% 35%, transparent 0 20%, color-mix(in oklab, var(--neon-violet) 30%, transparent) 30%, transparent 46%),
-      radial-gradient(ellipse at 50% 42%, color-mix(in oklab, var(--foreground) 7%, transparent), transparent 36%);
-    filter: blur(18px) saturate(140%);
-    animation: aurora-flow 14s ease-in-out infinite;
+      conic-gradient(from 210deg at 28% 28%, transparent 0 14%, color-mix(in oklab, var(--neon-cyan) 38%, transparent) 22%, transparent 38%),
+      conic-gradient(from 40deg at 72% 35%, transparent 0 18%, color-mix(in oklab, var(--accent) 36%, transparent) 30%, transparent 46%),
+      conic-gradient(from 120deg at 30% 78%, transparent 0 16%, color-mix(in oklab, var(--success) 32%, transparent) 26%, transparent 42%),
+      conic-gradient(from 280deg at 78% 72%, transparent 0 18%, color-mix(in oklab, var(--neon-blue) 34%, transparent) 28%, transparent 44%),
+      radial-gradient(ellipse at 50% 50%, color-mix(in oklab, var(--foreground) 6%, transparent), transparent 50%);
+    filter: blur(40px) saturate(160%);
+    animation: aurora-flow 22s ease-in-out infinite;
+    will-change: transform, opacity;
   }
 
   .market-grid {

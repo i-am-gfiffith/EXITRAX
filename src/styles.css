@@ -178,9 +178,11 @@
 
 @layer components {
   .glass {
-    background: var(--background);
-    border: 2px solid var(--foreground);
-    box-shadow: 8px 8px 0 var(--primary);
+    background: color-mix(in oklab, var(--background) 55%, transparent);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 2px solid color-mix(in oklab, var(--foreground) 85%, transparent);
+    box-shadow: 8px 8px 0 color-mix(in oklab, var(--primary) 75%, transparent);
   }
 
   .glass-strong {

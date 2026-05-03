@@ -18,7 +18,7 @@ export function AnimatedBackground() {
   }, []);
 
   return (
-    <div ref={rootRef} className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-background">
+    <div ref={rootRef} className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
       <div className="cosmic-nebula absolute inset-0" />
       <div className="cosmic-aurora absolute inset-0" />
       <div className="market-grid absolute inset-0" />

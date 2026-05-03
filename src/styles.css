@@ -328,6 +328,17 @@
     animation: star-drift 80s linear infinite;
   }
 
+  .starfield-mid {
+    opacity: 0.55;
+    background-image:
+      radial-gradient(circle, color-mix(in oklab, var(--foreground) 88%, transparent) 0 1.1px, transparent 1.6px),
+      radial-gradient(circle, color-mix(in oklab, var(--neon-blue) 70%, transparent) 0 1px, transparent 1.5px),
+      radial-gradient(circle, color-mix(in oklab, var(--foreground) 70%, transparent) 0 0.9px, transparent 1.4px);
+    background-position: 12px 80px, 180px 40px, 90px 200px;
+    background-size: 200px 200px, 280px 280px, 320px 320px;
+    animation: star-drift 60s linear infinite;
+  }
+
   .starfield-near {
     opacity: 0.7;
     background-image:

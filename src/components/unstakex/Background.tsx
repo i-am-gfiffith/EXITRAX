@@ -25,6 +25,7 @@ export function AnimatedBackground() {
       <div className="orbital-ring orbital-ring-one" />
       <div className="orbital-ring orbital-ring-two" />
       <div className="starfield starfield-far absolute inset-0" />
+      <div className="starfield starfield-mid absolute inset-0" />
       <div className="starfield starfield-near absolute inset-0" />
       <div className="stellar-dust absolute inset-0" />
 

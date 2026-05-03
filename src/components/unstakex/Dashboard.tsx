@@ -26,7 +26,7 @@ export function Dashboard() {
           </h2>
         </div>
 
-        <motion.div className="mt-14 relative overflow-hidden rounded-md border-2 border-foreground bg-card p-6 shadow-brutal sm:p-10" initial={{ opacity: 0, y: 26 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.55 }}>
+        <motion.div className="glass mt-14 relative overflow-hidden rounded-md p-6 sm:p-10" initial={{ opacity: 0, y: 26 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.55 }}>
           <div className="grid grid-cols-2 gap-4">
             <div>
               <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Locked</div>

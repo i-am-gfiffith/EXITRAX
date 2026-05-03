@@ -15,8 +15,8 @@ export function Problem() {
           </h2>
         </div>
 
-        <div className="mt-14 grid overflow-hidden rounded-md border-2 border-foreground bg-foreground shadow-brutal md:grid-cols-2">
-          <motion.div className="bg-background p-7 sm:p-8" initial={{ opacity: 0, x: -22 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.35 }} transition={{ duration: 0.45 }}>
+        <div className="glass mt-14 grid overflow-hidden rounded-md md:grid-cols-2 divide-y-2 md:divide-y-0 md:divide-x-2 divide-foreground/40">
+          <motion.div className="p-7 sm:p-8" initial={{ opacity: 0, x: -22 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.35 }} transition={{ duration: 0.45 }}>
             <Clock className="h-5 w-5 text-muted-foreground" />
             <div className="mt-5 text-lg font-black uppercase">Traditional</div>
             <div className="mt-2 text-sm leading-6 text-muted-foreground">
@@ -24,7 +24,7 @@ export function Problem() {
             </div>
             <div className="mt-6 text-3xl font-black tabular-nums text-muted-foreground">14d</div>
           </motion.div>
-          <motion.div className="relative bg-primary p-7 text-primary-foreground sm:p-8" initial={{ opacity: 0, x: 22 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.35 }} transition={{ duration: 0.45, delay: 0.08 }}>
+          <motion.div className="relative bg-primary/85 p-7 text-primary-foreground sm:p-8" initial={{ opacity: 0, x: 22 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.35 }} transition={{ duration: 0.45, delay: 0.08 }}>
             <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, var(--neon-cyan), transparent)" }} />
             <Zap className="h-5 w-5 text-primary-foreground" />
             <div className="mt-5 text-lg font-black uppercase"><BrandName /></div>

@@ -56,7 +56,7 @@ export function Hero() {
           </motion.div>
 
           <motion.div className="relative" initial={{ opacity: 0, x: 34, rotate: 1.5 }} animate={{ opacity: 1, x: 0, rotate: 0 }} transition={{ duration: 0.75, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}>
-            <div className="relative overflow-hidden rounded-md border-2 border-foreground bg-card p-6 shadow-brutal sm:p-8">
+            <div className="glass relative overflow-hidden rounded-md p-6 sm:p-8">
               <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full blur-3xl opacity-40"
                 style={{ background: "radial-gradient(circle, var(--neon-violet), transparent 70%)" }} />
 

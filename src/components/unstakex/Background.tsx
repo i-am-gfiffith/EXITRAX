@@ -6,32 +6,88 @@ export function AnimatedBackground() {
 
   useEffect(() => {
     if (!rootRef.current) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const root = rootRef.current;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const coarse = window.matchMedia("(pointer: coarse)").matches;
 
-    const context = gsap.context(() => {
-      gsap.to(".market-grid", { backgroundPosition: "96px 96px", duration: 24, ease: "none", repeat: -1 });
-      gsap.to(".cosmic-aurora", { xPercent: 2, yPercent: -2, scale: 1.04, duration: 12, yoyo: true, repeat: -1, ease: "sine.inOut" });
-      gsap.to(".constellation-map", { opacity: 0.62, duration: 3.2, yoyo: true, repeat: -1, ease: "power1.inOut" });
-    }, rootRef);
+    let context: gsap.Context | undefined;
+    if (!reduceMotion) {
+      context = gsap.context(() => {
+        gsap.to(".market-grid", { backgroundPosition: "96px 96px", duration: 24, ease: "none", repeat: -1 });
+        gsap.to(".cosmic-aurora", { xPercent: 2, yPercent: -2, scale: 1.04, duration: 12, yoyo: true, repeat: -1, ease: "sine.inOut" });
+        gsap.to(".constellation-map", { opacity: 0.62, duration: 3.2, yoyo: true, repeat: -1, ease: "power1.inOut" });
+      }, rootRef);
+    }
 
-    return () => context.revert();
+    // Interactive parallax — mouse + scroll drive CSS vars consumed by layers
+    const state = { mx: 0, my: 0, tmx: 0, tmy: 0, sy: 0, tsy: 0 };
+    let rafId = 0;
+
+    const tick = () => {
+      // Smooth easing toward target
+      state.mx += (state.tmx - state.mx) * 0.06;
+      state.my += (state.tmy - state.my) * 0.06;
+      state.sy += (state.tsy - state.sy) * 0.08;
+      root.style.setProperty("--mx", state.mx.toFixed(3));
+      root.style.setProperty("--my", state.my.toFixed(3));
+      root.style.setProperty("--sy", state.sy.toFixed(2) + "px");
+      rafId = requestAnimationFrame(tick);
+    };
+    rafId = requestAnimationFrame(tick);
+
+    const onMove = (e: MouseEvent) => {
+      state.tmx = (e.clientX / window.innerWidth - 0.5) * 2; // -1..1
+      state.tmy = (e.clientY / window.innerHeight - 0.5) * 2;
+    };
+    const onTouch = (e: TouchEvent) => {
+      const t = e.touches[0];
+      if (!t) return;
+      state.tmx = (t.clientX / window.innerWidth - 0.5) * 2;
+      state.tmy = (t.clientY / window.innerHeight - 0.5) * 2;
+    };
+    const onScroll = () => {
+      state.tsy = window.scrollY;
+    };
+    const onClick = (e: MouseEvent) => {
+      // Burst ripple at click position
+      const ripple = document.createElement("div");
+      ripple.className = "aurora-ripple";
+      ripple.style.left = e.clientX + "px";
+      ripple.style.top = e.clientY + "px";
+      root.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 1100);
+    };
+
+    if (!coarse) window.addEventListener("mousemove", onMove, { passive: true });
+    window.addEventListener("touchmove", onTouch, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("click", onClick);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("touchmove", onTouch);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("click", onClick);
+      context?.revert();
+    };
   }, []);
 
   return (
-    <div ref={rootRef} className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-      <div className="cosmic-nebula absolute inset-0" />
-      <div className="cosmic-aurora absolute inset-0" />
-      <div className="market-grid absolute inset-0" />
-      <div className="orbital-ring orbital-ring-one" />
-      <div className="orbital-ring orbital-ring-two" />
-      <div className="starfield starfield-far absolute inset-0" />
-      <div className="starfield starfield-mid absolute inset-0" />
-      <div className="starfield starfield-near absolute inset-0" />
-      <div className="stellar-dust absolute inset-0" />
+    <div ref={rootRef} className="bg-interactive pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+      <div className="cosmic-nebula parallax-slow absolute inset-0" />
+      <div className="cosmic-aurora parallax-mid absolute inset-0" />
+      <div className="market-grid parallax-slow absolute inset-0" />
+      <div className="orbital-ring orbital-ring-one parallax-fast" />
+      <div className="orbital-ring orbital-ring-two parallax-mid" />
+      <div className="starfield starfield-far parallax-slow absolute inset-0" />
+      <div className="starfield starfield-mid parallax-mid absolute inset-0" />
+      <div className="starfield starfield-near parallax-fast absolute inset-0" />
+      <div className="stellar-dust parallax-fast absolute inset-0" />
 
       <svg
         aria-hidden="true"
-        className="constellation-map absolute inset-0 h-full w-full"
+        className="constellation-map parallax-mid absolute inset-0 h-full w-full"
         viewBox="0 0 1200 800"
         preserveAspectRatio="none"
       >

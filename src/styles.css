@@ -155,12 +155,12 @@
     font-family: var(--font-sans);
     background-color: var(--color-background);
     background-image:
-      radial-gradient(ellipse 70% 55% at 15% 12%, color-mix(in oklab, var(--neon-cyan) 32%, transparent), transparent 60%),
-      radial-gradient(ellipse 65% 50% at 88% 18%, color-mix(in oklab, var(--accent) 28%, transparent), transparent 60%),
-      radial-gradient(ellipse 75% 55% at 50% 50%, color-mix(in oklab, var(--success) 22%, transparent), transparent 65%),
-      radial-gradient(ellipse 70% 55% at 10% 85%, color-mix(in oklab, var(--neon-blue) 30%, transparent), transparent 60%),
-      radial-gradient(ellipse 70% 55% at 92% 88%, color-mix(in oklab, var(--neon-violet) 26%, transparent), transparent 60%),
-      linear-gradient(180deg, color-mix(in oklab, var(--background) 92%, black), var(--background));
+      radial-gradient(ellipse 70% 55% at 15% 12%, color-mix(in oklab, var(--neon-cyan) 22%, transparent), transparent 60%),
+      radial-gradient(ellipse 65% 50% at 88% 18%, color-mix(in oklab, var(--accent) 18%, transparent), transparent 60%),
+      radial-gradient(ellipse 75% 55% at 50% 50%, color-mix(in oklab, var(--success) 14%, transparent), transparent 65%),
+      radial-gradient(ellipse 70% 55% at 10% 85%, color-mix(in oklab, var(--neon-blue) 20%, transparent), transparent 60%),
+      radial-gradient(ellipse 70% 55% at 92% 88%, color-mix(in oklab, var(--neon-violet) 18%, transparent), transparent 60%),
+      linear-gradient(180deg, color-mix(in oklab, var(--background) 96%, black), var(--background));
     background-attachment: fixed;
     background-size: 200% 200%, 200% 200%, 220% 220%, 200% 200%, 200% 200%, 100% 100%;
     animation: nebula-shift 40s ease-in-out infinite;
@@ -168,6 +168,20 @@
     text-rendering: geometricPrecision;
     -webkit-font-smoothing: antialiased;
     scroll-behavior: smooth;
+    position: relative;
+  }
+
+  /* Contrast-safe overlay: subtle dark vignette + readability layer that sits above the aurora but below all content */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -5;
+    background:
+      radial-gradient(ellipse at center, transparent 0%, color-mix(in oklab, var(--background) 35%, transparent) 55%, color-mix(in oklab, var(--background) 70%, transparent) 100%),
+      linear-gradient(180deg, color-mix(in oklab, var(--background) 55%, transparent) 0%, color-mix(in oklab, var(--background) 25%, transparent) 35%, color-mix(in oklab, var(--background) 25%, transparent) 65%, color-mix(in oklab, var(--background) 60%, transparent) 100%);
+    backdrop-filter: saturate(115%);
   }
 
   ::selection { background: var(--primary); color: var(--primary-foreground); }

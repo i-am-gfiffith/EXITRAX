@@ -469,4 +469,47 @@
   .shooting-star-three { top: 22%; right: 42%; animation-delay: 6.4s; animation-duration: 11s; width: 120px; }
   .shooting-star-four { top: 64%; right: 8%; animation-delay: 2.2s; animation-duration: 10s; width: 150px; }
   .shooting-star-five { top: 82%; right: 36%; animation-delay: 5s; animation-duration: 12s; width: 200px; }
+
+  /* Interactive parallax — driven by --mx (-1..1), --my (-1..1), --sy (scroll px) set by Background.tsx */
+  .bg-interactive { --mx: 0; --my: 0; --sy: 0px; }
+  .parallax-slow {
+    transform: translate3d(calc(var(--mx) * 8px), calc(var(--my) * 8px + var(--sy) * 0.04), 0);
+    transition: transform 220ms cubic-bezier(.22,.61,.36,1);
+  }
+  .parallax-mid {
+    transform: translate3d(calc(var(--mx) * 18px), calc(var(--my) * 18px + var(--sy) * 0.08), 0);
+    transition: transform 180ms cubic-bezier(.22,.61,.36,1);
+  }
+  .parallax-fast {
+    transform: translate3d(calc(var(--mx) * 32px), calc(var(--my) * 32px + var(--sy) * 0.14), 0);
+    transition: transform 140ms cubic-bezier(.22,.61,.36,1);
+  }
+  /* Orbital rings keep their centering transform; layer parallax via translate-only override */
+  .orbital-ring.parallax-mid,
+  .orbital-ring.parallax-fast {
+    transform: translate(-50%, -50%) translate3d(calc(var(--mx) * 14px), calc(var(--my) * 14px), 0);
+  }
+
+  /* Click ripple bursts */
+  .aurora-ripple {
+    position: fixed;
+    width: 12px; height: 12px;
+    margin-left: -6px; margin-top: -6px;
+    border-radius: 9999px;
+    pointer-events: none;
+    background: radial-gradient(circle, color-mix(in oklab, var(--neon-cyan) 70%, transparent) 0%, color-mix(in oklab, var(--neon-violet) 35%, transparent) 40%, transparent 70%);
+    box-shadow: 0 0 24px color-mix(in oklab, var(--neon-cyan) 60%, transparent);
+    mix-blend-mode: screen;
+    animation: aurora-ripple 1s cubic-bezier(.22,.61,.36,1) forwards;
+    will-change: transform, opacity;
+  }
+  @keyframes aurora-ripple {
+    0% { transform: scale(1); opacity: 0.9; }
+    100% { transform: scale(36); opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .parallax-slow, .parallax-mid, .parallax-fast { transform: none !important; transition: none !important; }
+    .aurora-ripple { display: none !important; }
+  }
 }

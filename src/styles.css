@@ -471,7 +471,38 @@
   .shooting-star-five { top: 82%; right: 36%; animation-delay: 5s; animation-duration: 12s; width: 200px; }
 
   /* Interactive parallax — driven by --mx (-1..1), --my (-1..1), --sy (scroll px) set by Background.tsx */
-  .bg-interactive { --mx: 0; --my: 0; --sy: 0px; }
+  /* --exit-intensity (0..1) is set on :root by the Dashboard slider; default 0.5 */
+  .bg-interactive { --mx: 0; --my: 0; --sy: 0px; --exit-intensity: 0.5; }
+
+  /* Glow + density coupling: layers scale with --exit-intensity */
+  .cosmic-aurora {
+    opacity: calc(0.32 + var(--exit-intensity, 0.5) * 0.55) !important;
+    filter: blur(calc(28px + var(--exit-intensity, 0.5) * 28px)) saturate(calc(120% + var(--exit-intensity, 0.5) * 80%)) !important;
+    transition: opacity 380ms ease, filter 380ms ease;
+  }
+  .cosmic-nebula {
+    opacity: calc(0.55 + var(--exit-intensity, 0.5) * 0.4) !important;
+    transition: opacity 380ms ease;
+  }
+  .stellar-dust {
+    opacity: calc(0.18 + var(--exit-intensity, 0.5) * 0.55) !important;
+    background-size:
+      calc(140px - var(--exit-intensity, 0.5) * 70px) calc(140px - var(--exit-intensity, 0.5) * 70px),
+      calc(200px - var(--exit-intensity, 0.5) * 100px) calc(200px - var(--exit-intensity, 0.5) * 100px) !important;
+    transition: opacity 380ms ease, background-size 380ms ease;
+  }
+  .starfield-near {
+    opacity: calc(0.45 + var(--exit-intensity, 0.5) * 0.5) !important;
+    transition: opacity 380ms ease;
+  }
+  .starfield-mid {
+    opacity: calc(0.35 + var(--exit-intensity, 0.5) * 0.45) !important;
+    transition: opacity 380ms ease;
+  }
+  .orbital-ring {
+    opacity: calc(0.18 + var(--exit-intensity, 0.5) * 0.45) !important;
+    transition: opacity 380ms ease;
+  }
   .parallax-slow {
     transform: translate3d(calc(var(--mx) * 8px), calc(var(--my) * 8px + var(--sy) * 0.04), 0);
     transition: transform 220ms cubic-bezier(.22,.61,.36,1);

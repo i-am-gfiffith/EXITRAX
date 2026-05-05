@@ -16,6 +16,13 @@ export function Dashboard() {
   const dAnim = useCountUp(d);
   const vAnim = useCountUp(v);
 
+  // Sync slider position to background glow + particle density.
+  // Closer to unlock (lower days) → higher intensity.
+  useEffect(() => {
+    const intensity = 1 - (days - 1) / 29; // 1 → 1.0, 30 → 0.0
+    document.documentElement.style.setProperty("--exit-intensity", intensity.toFixed(3));
+  }, [days]);
+
   return (
     <section id="dashboard" className="py-28">
       <div className="mx-auto max-w-3xl px-4">

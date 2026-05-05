@@ -193,6 +193,43 @@
       scroll-behavior: auto !important;
       transition-duration: 0.01ms !important;
     }
+    body {
+      animation: none !important;
+      background-attachment: scroll;
+    }
+    body::before {
+      background:
+        linear-gradient(180deg,
+          color-mix(in oklab, var(--background) 70%, transparent) 0%,
+          color-mix(in oklab, var(--background) 45%, transparent) 50%,
+          color-mix(in oklab, var(--background) 70%, transparent) 100%) !important;
+      backdrop-filter: saturate(105%) !important;
+    }
+  }
+
+  /* Low-power / coarse-pointer devices (most phones, tablets, low-end laptops):
+     slow the aurora drastically and strengthen the contrast overlay so text stays readable
+     and the GPU isn't taxed. */
+  @media (update: slow), (pointer: coarse) and (hover: none) {
+    body {
+      animation-duration: 120s !important;
+      background-attachment: scroll;
+    }
+    body::before {
+      background:
+        radial-gradient(ellipse at center, transparent 0%, color-mix(in oklab, var(--background) 50%, transparent) 55%, color-mix(in oklab, var(--background) 80%, transparent) 100%),
+        linear-gradient(180deg, color-mix(in oklab, var(--background) 70%, transparent) 0%, color-mix(in oklab, var(--background) 40%, transparent) 35%, color-mix(in oklab, var(--background) 40%, transparent) 65%, color-mix(in oklab, var(--background) 75%, transparent) 100%) !important;
+      backdrop-filter: saturate(110%) !important;
+    }
+    .cosmic-aurora { animation-duration: 60s !important; filter: blur(28px) saturate(140%) !important; opacity: 0.35 !important; }
+    .cosmic-nebula { animation-duration: 90s !important; }
+    .starfield-far { animation-duration: 200s !important; }
+    .starfield-mid { animation-duration: 160s !important; }
+    .starfield-near { animation-duration: 140s !important; }
+    .stellar-dust { animation-duration: 40s !important; opacity: 0.22 !important; }
+    .orbital-ring { animation-duration: 120s !important; }
+    .orbital-ring-two { animation-duration: 180s !important; }
+    .shooting-star { display: none !important; }
   }
 }
 

@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 export function Dashboard() {
   const locked = 10;
   const [days, setDays] = useState(14);
+  const [liveIntensity, setLiveIntensity] = useState(1 - (14 - 1) / 29);
 
   const d = useMemo(() => discountPct(days), [days]);
   const v = useMemo(() => exitValue(locked, days), [days]);
@@ -18,7 +19,7 @@ export function Dashboard() {
 
   // Smoothly tween background glow + particle density toward slider target.
   // Closer to unlock (lower days) → higher intensity. rAF easing avoids
-  // abrupt step-changes between slider notches.
+  // abrupt step-changes between slider notches. Also drives the live preview badge.
   useEffect(() => {
     const target = 1 - (days - 1) / 29; // 1 → 1.0, 30 → 0.0
     const root = document.documentElement;
@@ -29,7 +30,6 @@ export function Dashboard() {
     const duration = 700; // ms
     const t0 = performance.now();
     let raf = 0;
-    // easeInOutCubic for smooth acceleration/deceleration
     const ease = (t: number) =>
       t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
@@ -37,11 +37,18 @@ export function Dashboard() {
       const p = Math.min(1, (now - t0) / duration);
       const v = start + (target - start) * ease(p);
       root.style.setProperty("--exit-intensity", v.toFixed(4));
+      setLiveIntensity(v);
       if (p < 1) raf = requestAnimationFrame(step);
     };
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
   }, [days]);
+
+  const intensityLabel =
+    liveIntensity >= 0.75 ? "Peak" : liveIntensity >= 0.45 ? "Active" : liveIntensity >= 0.2 ? "Calm" : "Dormant";
+  const intensityPct = Math.round(liveIntensity * 100);
+  const dotCount = 1 + Math.round(liveIntensity * 4); // 1..5
+
 
   return (
     <section id="dashboard" className="py-28">

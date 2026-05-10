@@ -111,8 +111,15 @@ export function Dashboard() {
               type="button"
               role="switch"
               aria-checked={reduceMotion}
+              aria-label="Reduce motion: disable eased glow tween, snap values discretely"
               onClick={toggleReduceMotion}
-              className="group inline-flex items-center gap-2 rounded-full border border-foreground/15 px-2.5 py-1 text-[10px] font-mono uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground hover:border-foreground/40"
+              onKeyDown={(e) => {
+                if (e.key === " " || e.key === "Enter") {
+                  e.preventDefault();
+                  toggleReduceMotion();
+                }
+              }}
+              className="group inline-flex items-center gap-2 rounded-full border border-foreground/15 px-2.5 py-1 text-[10px] font-mono uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground hover:border-foreground/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--neon-cyan)] focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:text-foreground"
               title="Disable the eased glow tween — values snap discretely on each slider step"
             >
               <span

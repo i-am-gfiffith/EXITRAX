@@ -106,6 +106,30 @@ export function Dashboard() {
             </div>
           </div>
 
+          <div className="mt-6 flex justify-end">
+            <button
+              type="button"
+              role="switch"
+              aria-checked={reduceMotion}
+              onClick={toggleReduceMotion}
+              className="group inline-flex items-center gap-2 rounded-full border border-foreground/15 px-2.5 py-1 text-[10px] font-mono uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground hover:border-foreground/40"
+              title="Disable the eased glow tween — values snap discretely on each slider step"
+            >
+              <span
+                className={
+                  "relative h-3.5 w-6 rounded-full transition-colors " +
+                  (reduceMotion ? "bg-[var(--neon-cyan)]" : "bg-foreground/20")
+                }
+              >
+                <span
+                  className="absolute top-0.5 h-2.5 w-2.5 rounded-full bg-background transition-all"
+                  style={{ left: reduceMotion ? "calc(100% - 0.625rem - 2px)" : "2px" }}
+                />
+              </span>
+              Reduce motion
+            </button>
+          </div>
+
           <div className="mt-10">
             <Slider
               value={[days]}

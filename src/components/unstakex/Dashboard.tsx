@@ -215,7 +215,7 @@ export function Dashboard() {
                     }
                   }}
                   aria-pressed={active}
-                  aria-label={`${p.label} preset, ${p.days} day${p.days === 1 ? "" : "s"} until unlock`}
+                  aria-label={`${p.label} preset, ${p.days} day${(p.days as number) === 1 ? "" : "s"} until unlock`}
                   className={
                     "rounded-md border px-3 py-1.5 text-[10px] font-mono uppercase tracking-widest transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--neon-cyan)] focus-visible:ring-offset-2 focus-visible:ring-offset-background " +
                     (active

@@ -111,8 +111,15 @@ export function Dashboard() {
               type="button"
               role="switch"
               aria-checked={reduceMotion}
+              aria-label="Reduce motion: disable eased glow tween, snap values discretely"
               onClick={toggleReduceMotion}
-              className="group inline-flex items-center gap-2 rounded-full border border-foreground/15 px-2.5 py-1 text-[10px] font-mono uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground hover:border-foreground/40"
+              onKeyDown={(e) => {
+                if (e.key === " " || e.key === "Enter") {
+                  e.preventDefault();
+                  toggleReduceMotion();
+                }
+              }}
+              className="group inline-flex items-center gap-2 rounded-full border border-foreground/15 px-2.5 py-1 text-[10px] font-mono uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground hover:border-foreground/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--neon-cyan)] focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:text-foreground"
               title="Disable the eased glow tween — values snap discretely on each slider step"
             >
               <span
@@ -137,8 +144,13 @@ export function Dashboard() {
               min={1}
               max={30}
               step={1}
-              className="[&_[role=slider]]:bg-[var(--neon-cyan)] [&_[role=slider]]:border-0 [&_[role=slider]]:shadow-[0_0_16px_var(--neon-cyan)] [&_[role=slider]]:h-4 [&_[role=slider]]:w-4"
+              aria-label="Time to unlock in days"
+              aria-valuetext={`${days} day${days === 1 ? "" : "s"} until unlock, glow intensity ${intensityPct} percent, ${intensityLabel}`}
+              className="[&_[role=slider]]:bg-[var(--neon-cyan)] [&_[role=slider]]:border-0 [&_[role=slider]]:shadow-[0_0_16px_var(--neon-cyan)] [&_[role=slider]]:h-4 [&_[role=slider]]:w-4 [&_[role=slider]]:focus-visible:ring-2 [&_[role=slider]]:focus-visible:ring-[var(--neon-cyan)] [&_[role=slider]]:focus-visible:ring-offset-2 [&_[role=slider]]:focus-visible:ring-offset-background [&_[role=slider]]:focus-visible:outline-none"
             />
+            <p className="sr-only">
+              Use Left/Right or Up/Down arrows to adjust by one day. Page Up/Page Down jumps by larger increments. Home jumps to 1 day, End jumps to 30 days.
+            </p>
             <div className="mt-3 flex items-center justify-between gap-3 text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
               <span>1D</span>
               <div
@@ -176,21 +188,43 @@ export function Dashboard() {
 
           {/* Quick scene presets — set both slider value and (via the
               tween effect) the background glow + particle density. */}
-          <div className="mt-6 flex flex-wrap gap-2">
+          <div
+            className="mt-6 flex flex-wrap gap-2"
+            role="group"
+            aria-label="Quick scene presets"
+          >
             {([
               { label: "Best Exit Zone", days: 3 },
               { label: "Balanced", days: 14 },
               { label: "High Discount Region", days: 28 },
-            ] as const).map((p) => {
+            ] as const).map((p, i, arr) => {
               const active = days === p.days;
               return (
                 <button
                   key={p.label}
                   type="button"
                   onClick={() => setDays(p.days)}
+                  onKeyDown={(e) => {
+                    if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+                      e.preventDefault();
+                      const next = e.currentTarget.parentElement?.children[(i + 1) % arr.length] as HTMLElement | undefined;
+                      next?.focus();
+                    } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+                      e.preventDefault();
+                      const prev = e.currentTarget.parentElement?.children[(i - 1 + arr.length) % arr.length] as HTMLElement | undefined;
+                      prev?.focus();
+                    } else if (e.key === "Home") {
+                      e.preventDefault();
+                      (e.currentTarget.parentElement?.children[0] as HTMLElement | undefined)?.focus();
+                    } else if (e.key === "End") {
+                      e.preventDefault();
+                      (e.currentTarget.parentElement?.children[arr.length - 1] as HTMLElement | undefined)?.focus();
+                    }
+                  }}
                   aria-pressed={active}
+                  aria-label={`${p.label} preset, ${p.days} day${(p.days as number) === 1 ? "" : "s"} until unlock`}
                   className={
-                    "rounded-md border px-3 py-1.5 text-[10px] font-mono uppercase tracking-widest transition-all " +
+                    "rounded-md border px-3 py-1.5 text-[10px] font-mono uppercase tracking-widest transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--neon-cyan)] focus-visible:ring-offset-2 focus-visible:ring-offset-background " +
                     (active
                       ? "border-[var(--neon-cyan)] text-foreground shadow-[0_0_16px_var(--neon-cyan)] bg-[color-mix(in_oklab,var(--neon-cyan)_14%,transparent)]"
                       : "border-foreground/15 text-muted-foreground hover:text-foreground hover:border-foreground/40")

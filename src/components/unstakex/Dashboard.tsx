@@ -137,8 +137,13 @@ export function Dashboard() {
               min={1}
               max={30}
               step={1}
-              className="[&_[role=slider]]:bg-[var(--neon-cyan)] [&_[role=slider]]:border-0 [&_[role=slider]]:shadow-[0_0_16px_var(--neon-cyan)] [&_[role=slider]]:h-4 [&_[role=slider]]:w-4"
+              aria-label="Time to unlock in days"
+              aria-valuetext={`${days} day${days === 1 ? "" : "s"} until unlock, glow intensity ${intensityPct} percent, ${intensityLabel}`}
+              className="[&_[role=slider]]:bg-[var(--neon-cyan)] [&_[role=slider]]:border-0 [&_[role=slider]]:shadow-[0_0_16px_var(--neon-cyan)] [&_[role=slider]]:h-4 [&_[role=slider]]:w-4 [&_[role=slider]]:focus-visible:ring-2 [&_[role=slider]]:focus-visible:ring-[var(--neon-cyan)] [&_[role=slider]]:focus-visible:ring-offset-2 [&_[role=slider]]:focus-visible:ring-offset-background [&_[role=slider]]:focus-visible:outline-none"
             />
+            <p className="sr-only">
+              Use Left/Right or Up/Down arrows to adjust by one day. Page Up/Page Down jumps by larger increments. Home jumps to 1 day, End jumps to 30 days.
+            </p>
             <div className="mt-3 flex items-center justify-between gap-3 text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
               <span>1D</span>
               <div

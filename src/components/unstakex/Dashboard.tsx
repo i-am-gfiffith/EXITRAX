@@ -79,6 +79,34 @@ export function Dashboard() {
             </div>
           </div>
 
+          {/* Quick scene presets — set both slider value and (via the
+              tween effect) the background glow + particle density. */}
+          <div className="mt-6 flex flex-wrap gap-2">
+            {([
+              { label: "Best Exit Zone", days: 3 },
+              { label: "Balanced", days: 14 },
+              { label: "High Discount Region", days: 28 },
+            ] as const).map((p) => {
+              const active = days === p.days;
+              return (
+                <button
+                  key={p.label}
+                  type="button"
+                  onClick={() => setDays(p.days)}
+                  aria-pressed={active}
+                  className={
+                    "rounded-md border px-3 py-1.5 text-[10px] font-mono uppercase tracking-widest transition-all " +
+                    (active
+                      ? "border-[var(--neon-cyan)] text-foreground shadow-[0_0_16px_var(--neon-cyan)] bg-[color-mix(in_oklab,var(--neon-cyan)_14%,transparent)]"
+                      : "border-foreground/15 text-muted-foreground hover:text-foreground hover:border-foreground/40")
+                  }
+                >
+                  {p.label}
+                </button>
+              );
+            })}
+          </div>
+
           <div className="mt-10 hairline" />
 
           <div className="mt-8 grid grid-cols-2 gap-4 sm:gap-8">

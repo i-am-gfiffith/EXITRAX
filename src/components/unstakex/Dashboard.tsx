@@ -6,10 +6,29 @@ import { discountPct, exitValue } from "@/lib/pricing";
 import { useCountUp } from "@/hooks/use-count-up";
 import { motion } from "framer-motion";
 
+const STORAGE_KEY = "unstakex:reduce-motion";
+
 export function Dashboard() {
   const locked = 10;
   const [days, setDays] = useState(14);
   const [liveIntensity, setLiveIntensity] = useState(1 - (14 - 1) / 29);
+  const [reduceMotion, setReduceMotion] = useState(false);
+
+  // Initialize reduce-motion from saved override or OS preference.
+  useEffect(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved === "1" || saved === "0") {
+      setReduceMotion(saved === "1");
+      return;
+    }
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduceMotion(mq.matches);
+    const onChange = (e: MediaQueryListEvent) => {
+      if (localStorage.getItem(STORAGE_KEY) == null) setReduceMotion(e.matches);
+    };
+    mq.addEventListener?.("change", onChange);
+    return () => mq.removeEventListener?.("change", onChange);
+  }, []);
 
   const d = useMemo(() => discountPct(days), [days]);
   const v = useMemo(() => exitValue(locked, days), [days]);
@@ -17,17 +36,23 @@ export function Dashboard() {
   const dAnim = useCountUp(d);
   const vAnim = useCountUp(v);
 
-  // Smoothly tween background glow + particle density toward slider target.
-  // Closer to unlock (lower days) → higher intensity. rAF easing avoids
-  // abrupt step-changes between slider notches. Also drives the live preview badge.
+  // Drive background glow + particle density. With reduce-motion on, snap
+  // to target instantly (no rAF tween, badge updates discretely per slider step).
   useEffect(() => {
-    const target = 1 - (days - 1) / 29; // 1 → 1.0, 30 → 0.0
+    const target = 1 - (days - 1) / 29;
     const root = document.documentElement;
+
+    if (reduceMotion) {
+      root.style.setProperty("--exit-intensity", target.toFixed(4));
+      setLiveIntensity(target);
+      return;
+    }
+
     const current = parseFloat(
       getComputedStyle(root).getPropertyValue("--exit-intensity").trim() || "0.5",
     );
     const start = isNaN(current) ? 0.5 : current;
-    const duration = 700; // ms
+    const duration = 700;
     const t0 = performance.now();
     let raf = 0;
     const ease = (t: number) =>
@@ -42,12 +67,21 @@ export function Dashboard() {
     };
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
-  }, [days]);
+  }, [days, reduceMotion]);
+
+  const toggleReduceMotion = () => {
+    setReduceMotion((prev) => {
+      const next = !prev;
+      localStorage.setItem(STORAGE_KEY, next ? "1" : "0");
+      return next;
+    });
+  };
 
   const intensityLabel =
     liveIntensity >= 0.75 ? "Peak" : liveIntensity >= 0.45 ? "Active" : liveIntensity >= 0.2 ? "Calm" : "Dormant";
   const intensityPct = Math.round(liveIntensity * 100);
-  const dotCount = 1 + Math.round(liveIntensity * 4); // 1..5
+  const dotCount = 1 + Math.round(liveIntensity * 4);
+
 
 
   return (

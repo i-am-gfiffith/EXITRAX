@@ -16,11 +16,31 @@ export function Dashboard() {
   const dAnim = useCountUp(d);
   const vAnim = useCountUp(v);
 
-  // Sync slider position to background glow + particle density.
-  // Closer to unlock (lower days) → higher intensity.
+  // Smoothly tween background glow + particle density toward slider target.
+  // Closer to unlock (lower days) → higher intensity. rAF easing avoids
+  // abrupt step-changes between slider notches.
   useEffect(() => {
-    const intensity = 1 - (days - 1) / 29; // 1 → 1.0, 30 → 0.0
-    document.documentElement.style.setProperty("--exit-intensity", intensity.toFixed(3));
+    const target = 1 - (days - 1) / 29; // 1 → 1.0, 30 → 0.0
+    const root = document.documentElement;
+    const current = parseFloat(
+      getComputedStyle(root).getPropertyValue("--exit-intensity").trim() || "0.5",
+    );
+    const start = isNaN(current) ? 0.5 : current;
+    const duration = 700; // ms
+    const t0 = performance.now();
+    let raf = 0;
+    // easeInOutCubic for smooth acceleration/deceleration
+    const ease = (t: number) =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    const step = (now: number) => {
+      const p = Math.min(1, (now - t0) / duration);
+      const v = start + (target - start) * ease(p);
+      root.style.setProperty("--exit-intensity", v.toFixed(4));
+      if (p < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
   }, [days]);
 
   return (

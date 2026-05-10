@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 export function Dashboard() {
   const locked = 10;
   const [days, setDays] = useState(14);
+  const [liveIntensity, setLiveIntensity] = useState(1 - (14 - 1) / 29);
 
   const d = useMemo(() => discountPct(days), [days]);
   const v = useMemo(() => exitValue(locked, days), [days]);
@@ -18,7 +19,7 @@ export function Dashboard() {
 
   // Smoothly tween background glow + particle density toward slider target.
   // Closer to unlock (lower days) → higher intensity. rAF easing avoids
-  // abrupt step-changes between slider notches.
+  // abrupt step-changes between slider notches. Also drives the live preview badge.
   useEffect(() => {
     const target = 1 - (days - 1) / 29; // 1 → 1.0, 30 → 0.0
     const root = document.documentElement;
@@ -29,7 +30,6 @@ export function Dashboard() {
     const duration = 700; // ms
     const t0 = performance.now();
     let raf = 0;
-    // easeInOutCubic for smooth acceleration/deceleration
     const ease = (t: number) =>
       t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
@@ -37,11 +37,18 @@ export function Dashboard() {
       const p = Math.min(1, (now - t0) / duration);
       const v = start + (target - start) * ease(p);
       root.style.setProperty("--exit-intensity", v.toFixed(4));
+      setLiveIntensity(v);
       if (p < 1) raf = requestAnimationFrame(step);
     };
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
   }, [days]);
+
+  const intensityLabel =
+    liveIntensity >= 0.75 ? "Peak" : liveIntensity >= 0.45 ? "Active" : liveIntensity >= 0.2 ? "Calm" : "Dormant";
+  const intensityPct = Math.round(liveIntensity * 100);
+  const dotCount = 1 + Math.round(liveIntensity * 4); // 1..5
+
 
   return (
     <section id="dashboard" className="py-28">
@@ -74,8 +81,38 @@ export function Dashboard() {
               step={1}
               className="[&_[role=slider]]:bg-[var(--neon-cyan)] [&_[role=slider]]:border-0 [&_[role=slider]]:shadow-[0_0_16px_var(--neon-cyan)] [&_[role=slider]]:h-4 [&_[role=slider]]:w-4"
             />
-            <div className="mt-2 flex justify-between text-[10px] text-muted-foreground font-mono tracking-widest">
-              <span>1D</span><span>30D</span>
+            <div className="mt-3 flex items-center justify-between gap-3 text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+              <span>1D</span>
+              <div
+                className="flex items-center gap-2 rounded-full border border-foreground/15 px-2.5 py-1 text-foreground/90 backdrop-blur-sm transition-colors"
+                style={{
+                  borderColor: `color-mix(in oklab, var(--neon-cyan) ${20 + intensityPct * 0.6}%, transparent)`,
+                  boxShadow: `0 0 ${6 + intensityPct * 0.18}px color-mix(in oklab, var(--neon-cyan) ${20 + intensityPct * 0.5}%, transparent)`,
+                  background: `color-mix(in oklab, var(--neon-cyan) ${4 + intensityPct * 0.08}%, transparent)`,
+                }}
+                aria-live="polite"
+                aria-label={`Glow intensity ${intensityPct} percent, ${intensityLabel}`}
+              >
+                <span className="flex items-center gap-[3px]">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <span
+                      key={i}
+                      className="h-1.5 w-1.5 rounded-full transition-all duration-150"
+                      style={{
+                        background:
+                          i < dotCount ? "var(--neon-cyan)" : "color-mix(in oklab, var(--foreground) 18%, transparent)",
+                        boxShadow:
+                          i < dotCount ? "0 0 6px var(--neon-cyan)" : "none",
+                        transform: i < dotCount ? "scale(1)" : "scale(0.85)",
+                      }}
+                    />
+                  ))}
+                </span>
+                <span className="tabular-nums">{intensityPct}%</span>
+                <span className="text-muted-foreground">·</span>
+                <span>{intensityLabel}</span>
+              </div>
+              <span>30D</span>
             </div>
           </div>
 
